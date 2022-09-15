@@ -803,10 +803,22 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 if (file_exists(__DIR__. '/settings.local.php')) {
     include __DIR__. '/settings.local.php';
 }
-$databases['default']['default'] = array (
+/*$databases['default']['default'] = array (
   'database' => 'colorvintage',
   'username' => 'root',
   'password' => 'root',
+  'prefix' => '',
+  'host' => 'localhost',
+  'port' => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);*/
+
+
+$databases['default']['default'] = array (
+  'database' => 'colorvintage',
+  'username' => 'colorvintage',
+  'password' => 'FdK1cnsvt64_Uwka',
   'prefix' => '',
   'host' => 'localhost',
   'port' => '3306',
