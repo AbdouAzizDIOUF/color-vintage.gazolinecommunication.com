@@ -1,0 +1,10 @@
+global-styling:
+  version: VERSION
+  css:
+    base:
+      css/adminimal_gazoline.css: {}
+  js:
+    js/adminimal_gazoline.js: {}
+  dependencies:
+    - core/jquery
+    - adminimal_theme/global-styling

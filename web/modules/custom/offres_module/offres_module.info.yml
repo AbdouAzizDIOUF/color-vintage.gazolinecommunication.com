@@ -1,0 +1,5 @@
+name: Offres
+description: Centralise les traittements liés aux Offres
+type: module
+core_version_requirement: ^9
+package: Color Vintage

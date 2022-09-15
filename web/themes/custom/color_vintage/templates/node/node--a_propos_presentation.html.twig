@@ -1,0 +1,167 @@
+<!-- Apropos -->
+<section class="bg-apropos-2 bg-black"  data-aos="fade" data-aos-delay="">
+	<div class="container maxwidth ">
+		<div class="container-fluid maxwidth padding-top-60 padding-bottom-20">
+			<span class="size20 light-font uppercase lineheight20 block margin-bottom-20 text-center" data-aos="fade-down" data-aos-delay="200">A Propos</span>
+			<h1 class="lora size50 uppercase white bold-font margin-bottom-30 block text-center" data-aos="fade-down" data-aos-delay="200">{{ label }}</h1>
+			<ul class="list-formation flex justify-center align" id="apropos">
+				<li class="uppercase {% if "/a-propos" in url('<current>')['#markup'] %}active{% endif %}"><a href="/a-propos">Présentation</a></li>
+				<li class="uppercase {% if "/a-propos-equipe" in url('<current>')['#markup'] %}active{% endif %}"><a href="/a-propos-equipe">Équipe</a></li>
+				<li class="uppercase {% if "/a-propos-cadre-de-formation" in url('<current>')['#markup'] %}active{% endif %}"><a href="/a-propos-cadre-formation">Cadre de formation</a></li>
+			</ul>
+		</div>
+	</div>
+</section>
+<!-- / Apropos-->
+
+<div class="menu-right">
+	<a href="/nous-contacter"><img src="/themes/custom/color_vintage/img/svg/question.svg" alt="###" style="max-width: 50px;left: 2px;position: relative;">Une question ?</a>
+</div>
+
+
+<!-- presentation -->
+<section id="presentation" class="relative margin-top-120	">
+    <div class="container-fluid maxwidth">
+			<div class="row flex align">
+				<div class="col-md-12 relative">
+					<img src="{{ file_url(node.field_image.entity.uri.value) }}" data-aos="fade-left" data-aos-delay="200" class="objet-fit" style="max-height:620px;">
+				</div>
+			</div>
+    </div>
+		<div class="bg-light-grey padding-top-280 padding-bottom-80  ">
+		<div class="container-fluid maxwidth">
+			<div class="row flex align">
+		<div class="col-md-12 margin-top-60 padding-right-120" data-aos="fade-right" data-aos-delay="">
+				<h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">Présentation</h2>
+			<div class="margin-bottom-30">{{ node.body.value|raw }}</div>
+		</div>
+	</div>
+</div>
+</div>
+</section>
+<!-- / presentation-->
+
+
+<!-- histoire -->
+<section id="histoire" class="relative margin-top-120	margin-bottom-120">
+<div class="container-fluid maxwidth">
+	<div class=" flex align " data-aos="fade-right" data-aos-delay="">
+			<h2 class="lora size30 uppercase bold-font margin-bottom-60 block lineheight30">Notre histoire</h2>
+	</div>
+	<div class="flex align  time-line">
+		{% for key, item in node.field_notre_histoire if key is not null %}
+			<div class="item" data-aos="fade-right" data-aos-delay="">
+				<div class="padding50 padding-left-0">
+					<span class="year">{{ item.entity.field_date.value }}</span>
+					<p>{{ item.entity.field_description.value|raw }}</p>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+</section>
+<!-- / histoire-->
+
+
+
+
+<!-- mot -->
+<section id="mot" class="relative" >
+    <div class="container-fluid maxwidth">
+			<div class="row flex align">
+				<div class="col-md-6 col-lg-5 margin-top-120" >
+					<img src="{{ file_url(node.field_fondatrice_image.entity.uri.value) }}" data-aos="fade-right" data-aos-delay="200" class="shadow-black">
+				</div>
+				<div class="offset-md-0 col-md-6 offset-lg-1 col-lg-5 margin-top-60" data-aos="fade-left" data-aos-delay="">
+						<h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{ node.field_fondatrice_titre.value }}</h2>
+						<div class="margin-bottom-30"> {{ node.field_fondatrice_message.value|raw }}</div>
+				</div>
+			</div>
+    </div>
+</section>
+<!-- / mot -->
+
+<!-- certifications -->
+<section id="certifications" class="bg-grey-clair margin-top-120 padding-top-120 padding-bottom-120">
+    <div class="container-fluid maxwidth">
+				<div class="margin-bottom-100" data-aos="fade-down" data-aos-delay="">
+						<h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30 text-center">Nos CERTIFICATIONS & AGREGATIONs</h2>
+				</div>
+			</div>
+	</section>
+	<!-- / certifications -->
+
+
+
+
+	<!-- philosophie -->
+	<section class="bg-philosophie" data-aos="fade" data-aos-delay="" style="background-image: url({{ file_url(node.field_philosophie_image.entity.uri.value)}})">
+	  <div class="container maxwidth ">
+		  <div class="container-fluid maxwidth padding-top-100 padding-bottom-100">
+				<div class="row">
+					<div class="col-md-3">
+						<h2 class="lora size30 white uppercase bold-font margin-bottom-30 block lineheight30">{{ node.field_philosophie_title.value }}</h2>
+						<div class="white">{{ node.field_philosophie_.value|raw }}</div>
+					</div>
+			</div>
+		</div>
+		</div>
+	</section>
+	<!-- / philosophie-->
+
+	<!-- chiffres -->
+	<section id="chiffres" class="relative margin-top-120	margin-bottom-60">
+	<div class="container-fluid maxwidth">
+		<div class="flex align justify-evenly">
+			<div class="chiffre" data-aos="fade-right" data-aos-delay="">
+					<div class="text-center block">08<span class="block">Lorem ipsum dolor</span></div>
+			</div>
+			<div class="chiffre" data-aos="fade-right" data-aos-delay="">
+					<div class="text-center block">12<span class="block">Lorem ipsum dolor</span></div>
+			</div>
+			<div class="chiffre" data-aos="fade-right" data-aos-delay="">
+					<div class="text-center block">345<span class="block">Lorem ipsum dolor</span></div>
+			</div>
+			<div class="chiffre" data-aos="fade-right" data-aos-delay="">
+					<div class="text-center block">02<span class="block">Lorem ipsum dolor</span></div>
+			</div>
+			<div class="chiffre" data-aos="fade-right" data-aos-delay="">
+					<div class="text-center block">08<span class="block">Lorem ipsum dolor</span></div>
+			</div>
+		</div>
+		</div>
+	</section>
+	<!-- / chiffres-->
+
+
+
+
+	<!-- engagements -->
+	<section id="engagements" class="relative  margin-top-120" >
+	    <div class="container-fluid maxwidth">
+				<div class="row flex align">
+					<div class="offset-md-0 col-md-6 offset-lg-1 col-lg-5  margin-bottom-120 relative"  >
+						<img src="{{ file_url(node.field_engagement_image.entity.uri.value) }}" data-aos="fade-left" data-aos-delay="200">
+						<img src="/themes/custom/color_vintage/img/engagements2.jpg" data-aos="slide-down" data-aos-delay="400" class="forme-back">
+					</div>
+					<div class="offset-md-0 col-md-6 offset-lg-1 col-lg-5" data-aos="fade-left" data-aos-delay="">
+							<h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{ node.field_engagement_title.value }}</h2>
+						<div class="margin-bottom-30">{{ node.field_engagement_description.value|raw }}</div>
+
+					</div>
+
+				</div>
+	    </div>
+	</section>
+	<!-- / engagements -->
+
+	<!-- partenaires -->
+	<section id="partenaires" class="bg-grey-clair padding-top-120 padding-bottom-120">
+	    <div class="container-fluid maxwidth">
+
+					<div class="margin-bottom-100" data-aos="fade-down" data-aos-delay="">
+							<h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30 text-center">Nos partenaires</h2>
+					</div>
+				</div>
+		</section>
+		<!-- / partenaires -->

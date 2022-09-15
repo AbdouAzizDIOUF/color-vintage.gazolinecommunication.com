@@ -1,0 +1,5 @@
+name: Methode de paiment
+description: Module for payment
+type: module
+core_version_requirement: ^9
+package: Color Vintage

@@ -1,0 +1,7 @@
+gz_blocks.form:
+  path: '/admin/config/system/gazoline-manager/blocs'
+  defaults:
+    _form: 'Drupal\gz_blocks\Form\GzBlocksForm'
+    _title: 'Blocs'
+  requirements:
+    _permission: 'gazoline'

@@ -1,0 +1,7 @@
+adminimal_gazoline.settings:
+  type: config_object
+  label: 'Configurer le menu'
+  mapping:
+    adminimal_gazoline:
+      type: mapping
+      mapping:

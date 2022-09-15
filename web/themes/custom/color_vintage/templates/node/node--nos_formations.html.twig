@@ -1,0 +1,96 @@
+<dialog id="window3">
+  {#<button id="exit" class="close"></button>#}
+  <h2 style="text-align: center">Confirmation d'inscription !</h2>
+  <p style="text-align: center">Un mail de validation vous a été envoyé à votre adresse mail
+    <br>Merci de bien vouloir confirmer votre inscription.
+    <br>Pensez à vérifier vos spams.</p><br><br>
+  <button id="exit3" class="fermer3">Fermer</button>
+</dialog>
+
+<!-- Apropos -->
+<section class="bg-apropos-2 bg-black"  data-aos="fade" data-aos-delay="">
+  <div class="container maxwidth ">
+    <div class="container-fluid maxwidth padding-top-60 padding-bottom-20">
+      <h1 class="lora size50 uppercase white bold-font margin-bottom-30 block text-center" data-aos="fade-down" data-aos-delay="200">Nos formations</h1>
+      <ul class="list-formation flex justify-center align">
+        <li><a href="/nos-formations">Toutes les formations</a></li>
+        {% for cat in categories  %}
+            <li><a href="#formation-{{ cat.id }}" {#onclick="displayByCategoryFormation({{ cat.id }})"#}>{{ cat.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- / Apropos-->
+
+{% if formations is empty %}
+  <section id="formation-1" class="relative margin-top-60 padding-bottom-60">
+    <div class="container-fluid">
+      <div class="row">
+        <div style="text-align: center">
+              Aucun résultat trouvé
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+
+<!-- formation-1 -->
+{% for key, formationsByCat in formations %}
+  <div id="formation-{{ key }}">
+  {% for formation in formationsByCat %}
+    {% if formation.order == 'odd' %}
+      <section id="formation-1" class="relative margin-top-60 padding-bottom-120">
+        <div class="container-fluid maxwidth">
+          <div class="row flex align">
+            <div class="offset-md-1 col-md-5 relative">
+              <img src="{{ formation.image }}" data-aos="fade-left" data-aos-delay="200" class="objet-fit" alt="">
+            </div>
+            <div class="col-md-4 offset-md-1 relative">
+              <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30 margin-top-30">{{ formation.title }}</h2>
+              <div class="margin-bottom-30 ">{{ formation.body|raw }}</div>
+              <a href="{{formation.link}}" class="btn margin-top-50">Voir la fiche formation</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+    {% if formation.order == 'evenq' %}
+      <section id="formation-2" class="relative margin-top-60 padding-bottom-120	">
+        <div class="container-fluid maxwidth">
+          <div class="row flex align">
+            <div class="col-md-4 offset-md-1 relative order-2">
+              <h2 class="lora size30 uppercase bold-font margin-bottom-30 margin-top-30 block lineheight30">{{ formation.title }}</h2>
+              <div class="margin-bottom-30 ">{{ formation.body|raw }}</div>
+              <a href="{{formation.link}}" class="btn margin-top-50">Voir la fiche formation</a>
+            </div>
+            <div class="offset-md-1 col-md-5 relative order-1">
+              <img src="{{ formation.image }}" data-aos="fade-left" data-aos-delay="200" class="objet-fit shadow-black-right">
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+    {% if formation.order == 'middle' %}
+      <section id="formation-3" class="bg-formation-3" data-aos="fade" data-aos-delay="" style="background-image: url({{ formation.image }}); background-size: cover">
+        <div class="container maxwidth ">
+          <div class="container-fluid maxwidth padding-top-100 padding-bottom-100">
+            <div class="row">
+              <div class="offset-md-7 col-md-4">
+                <h2 class="lora size30 white uppercase bold-font margin-bottom-30 block lineheight30 margin-top-30">{{ formation.title }}</h2>
+                <div class="white"> {{ formation.body|raw }} </div>
+                <a href="{{ formation.link }}" class="btn white-btn margin-top-50 ">Voir la fiche formation</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  {% endfor %}
+  </div>
+{% endfor %}
+
+<!-- Apropos -->
+{{ drupal_entity('block', 'rejoindrecolorvintage') }}
+<!-- / Apropos-->

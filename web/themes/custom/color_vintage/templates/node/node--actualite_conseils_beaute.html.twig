@@ -1,0 +1,35 @@
+<!-- header -->
+<section class="bg-apropos-2 bg-black"  data-aos="fade" data-aos-delay="" style="background-image: url({{ file_url(node.field_image.entity.uri.value) }})">
+  <div class="container maxwidth">
+    <div class="container-fluid maxwidth padding-top-60 padding-bottom-20">
+      <h1 class="lora size50 uppercase white bold-font margin-bottom-30 block text-center" data-aos="fade-down" data-aos-delay="200">{{label}}</h1>
+    </div>
+  </div>
+</section>
+<!-- / header-->
+
+{{ drupal_view('actualites', 'block_actualites') }}
+
+<!--  Actus -->
+{#<section class="actus-home padding-top-60 padding-bottom-120 bg-grey-clair">
+    <div class="container-fluid maxwidthsmall" >
+        <div class=" padding-top-80">
+          <div class="row">
+            {% for item in articles %}
+              <div class="col-md-4 hovereffect margin-bottom-60">
+                <div>
+                  <div class="overlay"></div>
+                  <a href="{{ item.link }}"><img class="block text-center margin-auto" src="{{ item.image }}"></a>
+                </div>
+                <a href="{{ item.link }}"><span class="lora size30 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-20 text-left">{{ item.title }}</span></a>
+                <div class="block lineheight15 block padding-bottom-30 border-color-bottom">{{ item.body|slice(0, 100)|raw }} ...</div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <span class="margin-top-120 block">
+            <a href="##" class="btn margin-auto block">Charger plus d'actualités</a>
+        </span>
+    </div>
+</section>#}
+<!--  / Actus -->

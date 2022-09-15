@@ -1,0 +1,16 @@
+<?php
+function kits_module_theme($existing, $type, $theme, $path): array
+{
+
+    return [
+
+        'panier' => [
+            'variables' => [
+                'data' => NULL,
+                'sommesTotale' => NULL,
+                'sommes' => ''
+            ],
+        ]
+    ];
+
+}

@@ -1,0 +1,31 @@
+kits_module.searchKits:
+  path: '/kits/search'
+  defaults:
+    _controller: '\Drupal\kits_module\Controller\KitsController::searchKits'
+    _title: 'search kits by category'
+  requirements:
+    _permission: 'access content'
+
+kits_module.panier:
+  path: '/panier'
+  defaults:
+    _controller: '\Drupal\kits_module\Controller\KitsController::panierAction'
+    _title: 'Mon Panier'
+  requirements:
+    _permission: 'access content'
+
+kits_module.deleteKit:
+  path: '/delete'
+  defaults:
+    _controller: '\Drupal\kits_module\Controller\KitsController::deleteKitAction'
+    _title: 'Mon Panier'
+  requirements:
+    _permission: 'access content'
+
+kits_module.updateNumberOfKitToCart:
+  path: '/updateNumberOfKitToCart'
+  defaults:
+    _controller: '\Drupal\kits_module\Controller\KitsController::updateNumberOfKitToCartAction'
+    _title: 'Mon Panier'
+  requirements:
+    _permission: 'access content'

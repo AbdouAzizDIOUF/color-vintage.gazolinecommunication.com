@@ -1,0 +1,8 @@
+name: Views Alter
+type: module
+description: 'Altérations sur les vues'
+package: Studio Gazoline
+
+version: '8.x-1.0'
+core: '8.x'
+project: 'gz_views_alter'

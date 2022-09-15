@@ -1,0 +1,349 @@
+<!-- Apropos -->
+<section class="bg-apropos-2 bg-black"  data-aos="fade" data-aos-delay="">
+    <div class="container maxwidth ">
+        <div class="container-fluid maxwidth padding-top-60 padding-bottom-20">
+            <h1 class="lora size50 uppercase white bold-font margin-bottom-30 block text-center" data-aos="fade-down" data-aos-delay="200">Panier</h1>
+        </div>
+    </div>
+</section>
+<!-- / Apropos-->
+
+{% if sommes.sommesKits == 0 and sommes.sommesFormations >0 %}
+    <input type="hidden" value="uniquementFormation" id="uniquementFormation">
+{% endif %}
+{% if sommes.sommesKits >= 150  %}
+    <input type="hidden" value="gratuiteLivraison" id="gratuiteLivraison">
+{% endif %}
+<input type="hidden" id="sommeKit" value="{{ sommes.sommesKits }}">
+<input type="hidden" id="gratuiteLivraison" value="nongratuiteLivraison">
+<!--  Actus -->
+<section class="actus-home padding-top-60 padding-bottom-120">
+    <div class="container-fluid maxwidth" >
+        <div class="row">
+            <div class="col-md-6  padding-left-0">
+                <div  id="accordion">
+                  <div class="onglets-panier flex justify-content-evenly">
+                        <a style="cursor: pointer" id="collapsePanier">Panier</a>
+                      {% if sommes.sommesKits > 0 %}<a style="cursor: pointer" {% if data.kits is not empty%} class="choixLivraison" id="choixLivraison" {% endif %}>Livraison</a> {% endif %}
+                        <a style="cursor: pointer" {% if data.kits is not empty%} class="collapseInfoPerso"  id="collapseInfoPerso" {% endif %}>Infos personnelles</a>
+                        <a style="cursor: pointer" {% if data.kits is not empty%} class="collapsePaiement" id="collapsePaiement" {% endif %}>Paiement</a>
+                  </div>
+                    {% if sommes.sommesKits != 0 or sommes.sommesFormations !=0 %}
+                        <div class="row">
+                            <div class="padding-top-80" id="collapse1">
+                                {# Panier #}
+                                <div id="kitDelete">
+                                    {% for  kit in data.kits %}
+                                        <div class="padding-bottom-50">
+                                            <div class="hovereffect margin-bottom-10 row border-color-bottom">
+                                                <div class="col-md-4 padding-left-0">
+                                                    <a href="{{ kit.link }}"><img class="block text-center margin-auto" src="{{ kit.image }}" ></a>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <a href="{{ kit.link }}"><span class="lora size30 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-20 text-left">{{ kit.title }}</span></a>
+                                                    <p class=" block lineheight15 block padding-bottom-30">{{ kit.body|slice(0, 150)|raw }}...</p>
+                                                    <br>
+
+                                                    <div class="flex space-between margin-bottom-30">
+                                                        {% if kit.formation is null %} {#onchange="addNombreKitCart({{ kit.id }})#}
+                                                            <div class="add margin-bottom-10"><span style="cursor: pointer" onclick="substractionNombreKitCart({{ kit.id }})">-</span><input onchange="addNombreKitCart({{ kit.id }})" type="number" id="{{ kit.id }}" value="{{ kit.nombre }}"/><span style="cursor: pointer" onclick="addNombreKitCart2({{ kit.id }})">+</span></div>
+                                                        {% endif %}
+                                                        <span class="date size30 light-font">{{ kit.prix }} €</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a class="delete-cart" {#href="/delete?id={{ kit.id }}"#} style="cursor: pointer" onclick="deleteKitOfCart({{ kit.id }})">Retirer du panier</a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                {# /Panier #}
+                            </div>
+                            <div class="padding-top-80 onglet-livraison" id="collapse2_1" style="display: none">
+                                <div class=" padding-bottom-30">
+                                    <span class="lora size30 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-50" style="text-align: center;">Mode de livraison</span>
+                                    <span id="alertChoixLivraison" class="margin-bottom-10" style="display: none">Merci de choisir un mode de livraison</span>
+                                    <div class="row d-flex">
+                                        {% if sommes.sommesKits > 0 and sommes.sommesKits < 150 %}
+                                            <div class="form-check col-md-4">
+                                                <div class="d-flex flex-column clickcollect">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <label class="form-check-label text-center" for="flexRadioDefault1">CLICK & COLLECT<br><span>Gratuit</span>
+                                                        {{ data.clickcollecte.description|raw }}
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-check col-md-4">
+                                                <div class="d-flex flex-column">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                                    <label class="form-check-label text-center" for="flexRadioDefault2">Colissimo <br>sans signature<span id="valLCSS">8 €</span>
+                                                        {{ data.collissimo.description|raw }}
+                                                    </label>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-check col-md-4">
+                                                <div class="d-flex flex-column">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" >
+                                                    <label class="form-check-label text-center" for="flexRadioDefault2">Colissimo <br>avec signature<span id="valLCAS">9 €</span>
+                                                        {{ data.collissimo.description|raw }}
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        {% endif %}
+                                        {% if sommes.sommesKits >= 150 %}
+                                            <div class="form-check col-md-4">
+                                                <div class="d-flex flex-column clickcollect">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                    <label class="form-check-label text-center" for="flexRadioDefault1">CLICK & COLLECT<br><span>Gratuit</span>
+                                                        {{ data.clickcollecte.description|raw }}
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-check col-md-4">
+                                                <div class="d-flex flex-column">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                                    <label class="form-check-label text-center" for="flexRadioDefault2">Colissimo <br>sans signature<span id="valLCSS1">0 €</span>
+                                                        {{ data.collissimo.description|raw }}
+                                                    </label>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-check col-md-4">
+                                                <div class="d-flex flex-column">
+                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" >
+                                                    <label class="form-check-label text-center" for="flexRadioDefault2">Colissimo <br>avec signature<span id="valLCAS1">0 €</span>
+                                                        {{ data.collissimo.description|raw }}
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="padding-top-80" id="collapse2" style="display: none">
+                                {# Infos #}
+                                <div class=" padding-bottom-50">
+                                    <span style="text-align: center" class="lora size30 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-20 text-left">Informations personnelles</span>
+                                    <form id="validateInfoLivraison">
+                                        <div class="row">
+                                            <div class="col-md-6 form-group margin-top-20">
+                                                <input type="text" placeholder="Nom" class="form-control" id="name" name="name" value="{{ data.infosLivraison.nom }}">
+                                            </div>
+                                            <div class="col-md-6 form-group margin-top-20">
+                                                <input type="text" placeholder="Prénom" class="form-control" id="lastname" name="lastname" value="{{ data.infosLivraison.prenom }}">
+                                            </div>
+                                            <div class="col-md-6 form-group margin-top-20">
+                                                <input type="email" placeholder="Adresse mail" class="form-control" id="email" name="email" value="{{ data.infosLivraison.email }}">
+                                            </div>
+                                            <div class="col-md-6 form-group margin-top-20">
+                                                <input type="tel" placeholder="Téléphone" class="form-control" id="phone" name="phone" value="{{ data.infosLivraison.telephone }}">
+                                            </div>
+                                            <div class="col-md-12 form-group margin-top-20">
+                                                <input type="text" placeholder="Adresse" class="form-control" id="adress" name="adress" value="{{ data.infosLivraison.adresse }}">
+                                            </div>
+                                            <div class="col-md-12 form-group margin-top-20">
+                                                <input type="text" placeholder="Complément d'adresse" class="form-control" id="adress_plus" name="adress_plus" value="{{ data.infosLivraison.complementAdresse }}">
+                                            </div>
+                                            <div class="col-md-6 form-group margin-top-20">
+                                                <input type="text" placeholder="Code postal" class="form-control" id="postal" name="postal" value="{{ data.infosLivraison.codePostal }}">
+                                            </div>
+                                            <div class="col-md-6 form-group margin-top-20">
+                                                <input type="text" placeholder="Ville" class="form-control" id="ville" name="ville" value="{{ data.infosLivraison.ville }}">
+                                            </div>
+                                            <div class="col-md-6 form-group margin-top-20">
+                                                <input type="checkbox" id="other_adress" name="subscribe" value="newsletter">
+                                                <label for="subscribeNews">Expédier la facture à une autre adresse</label>
+                                            </div>
+                                        </div>
+                                        <div id="otherAdress" style="display: none;">
+                                            <input type="hidden" id="other">
+                                            <div class="row">
+                                                <div class="col-md-4 form-group margin-top-20">
+                                                    <input type="text" placeholder="Nom" class="form-control" id="nom_other" name="nom_other">
+                                                </div>
+                                                <div class="col-md-4 form-group margin-top-20">
+                                                    <input type="text" placeholder="Prenom" class="form-control" id="prenom_other" name="prenom_other">
+                                                </div>
+                                                <div class="col-md-4 form-group margin-top-20">
+                                                    <input type="text" placeholder="Nom de la sociéte" class="form-control" id="societe_other" name="societe_other">
+                                                </div>
+                                                <div class="col-md-12 form-group margin-top-20">
+                                                    <input type="text" placeholder="Adresse" class="form-control" id="adress_other" name="adress_other">
+                                                </div>
+                                                <div class="col-md-12 form-group margin-top-20">
+                                                    <input type="text" placeholder="Complément d'adresse" class="form-control" id="adress_plus_other" name="adress_plus_other">
+                                                </div>
+                                                <div class="col-md-6 form-group margin-top-20">
+                                                    <input type="text" placeholder="Code postal" class="form-control" id="postal_other" name="postal_other">
+                                                </div>
+                                                <div class="col-md-6 form-group margin-top-20">
+                                                    <input type="text" placeholder="Ville" class="form-control" id="ville_other" name="ville_other">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                {# /Infos #}
+                            </div>
+
+                            <div class="padding-top-80" id="collapse3" style="display: none">
+                                {# Paiement #}
+                                <div class=" padding-bottom-50">
+                                    <H4 style="text-align: center" class="lora size30 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-20 text-left text-center">Choix de Paiement</H4>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-2"  id="cbform">
+                                            <form action="/payment?methodepayment=stripe" method="post" id="payment-form" class="row">
+                                                {% if sommes.sommesKits > 150 %}
+                                                    <input type="hidden" id="choixLivraisonValue2" name="choixLivraisonValue2" value="Colissimo Gratuite">
+                                                {% else %}
+                                                    <input type="hidden" id="choixLivraisonValue2" name="choixLivraisonValue2" value="Click And Collect">
+                                                {% endif %}
+                                                <input type="hidden" id="nom_other2" name="nom_other2">
+                                                <input type="hidden" id="prenom_other2" name="prenom_other2">
+                                                <input type="hidden" id="societe_other2" name="societe_other2">
+                                                <input type="hidden" id="adress_other2" name="adress_other2">
+                                                <input type="hidden" id="adress_plus_other2" name="adress_plus_other2">
+                                                <input type="hidden" id="postal_other2" name="postal_other2">
+                                                <input type="hidden" id="ville_other2" name="ville_other2">
+
+                                                <input type="hidden" placeholder="Nom" id="name2" name="name2">
+                                                <input type="hidden" placeholder="Prénom" id="lastname2" name="lastname2">
+                                                <input type="hidden" placeholder="Adresse mail" id="email2" name="email2">
+                                                <input type="hidden" placeholder="Téléphone" id="phone2" name="phone2">
+                                                <input type="hidden" placeholder="Adresse" id="adress2" name="adress2">
+                                                <input type="hidden" placeholder="Complément d'adresse" id="adress_plus2" name="adress_plus2">
+                                                <input type="hidden" placeholder="Code postal" id="postal2" name="postal2">
+                                                <input type="hidden" placeholder="Ville" id="ville2" name="ville2">
+                                                <div class="form-row">
+                                                    <div class="d-flex gap-3 flex-column checkPaiement">
+                                                        <div >
+                                                            <label for="card-element">
+                                                                <input class="form-check-input" type="radio" name="paiementCarte" id="paiementCarte" checked> Carte Bancaire</label>
+                                                        </div>
+                                                        <input type="hidden" name="amount2" value="{{ sommesTotale }}" id="amount2">
+                                                        <div id="card-element"></div>
+                                                        <div id="card-errors" role="alert"></div>
+                                                    </div>
+                                                    {#<input type="text" name="amount" placeholder="Enter Amount" value="{{ sommesTotale }}" disabled>#}
+
+                                                </div>
+
+                                                {#<form class="row">
+                                <div class="col-md-9 form-group margin-top-20">
+                                    <input type="text" placeholder="Numéro de carte" class="form-control" id="carte">
+                                </div>
+                                <div class="col-md-3 form-group margin-top-20">
+                                    <input type="text" placeholder="MM / AA CVC" class="form-control" id="expire">
+                                </div>
+                                <div class="col-md-6 form-group margin-top-20">
+                                    <input type="checkbox" id="other_adress" name="subscribe" value="newsletter">
+                                    <label for="subscribeNews">J’accepte les <a href="##">Conditions générales de vente</a></label>
+                                </div>
+                                <div class="col-md-12 form-group margin-top-20">
+                                    <button href="##" class="connexion">Payer</button>
+                                </div>#}
+                                                <button style="display: block" class="connexion" id="paiementParCarte">Payer par carte</button>
+                                            </form>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <div class="col-md-12 mb-5"  id="paypalform">
+                                            <form action="/payment?methodepayment=paypal" method="post" target="_top">
+                                                {% if sommes.sommesKits > 150 %}
+                                                    <input type="hidden" id="choixLivraisonValue1" name="choixLivraisonValue1" value="Colissimo Gratuite">
+                                                {% else %}
+                                                    <input type="hidden" id="choixLivraisonValue1" name="choixLivraisonValue1" value="Click And Collect">
+                                                {% endif %}
+                                                <input type="hidden" id="nom_other1" name="nom_other1">
+                                                <input type="hidden" id="prenom_other1" name="prenom_other1">
+                                                <input type="hidden" id="societe_other1" name="societe_other1">
+                                                <input type="hidden" id="adress_other1" name="adress_other1">
+                                                <input type="hidden" id="adress_plus_other1" name="adress_plus_other1">
+                                                <input type="hidden" id="postal_other1" name="postal_other1">
+                                                <input type="hidden" id="ville_other1" name="ville_other1">
+                                                <input type="hidden" placeholder="Nom" id="name1" name="name1">
+                                                <input type="hidden" placeholder="Prénom" id="lastname1" name="lastname1">
+                                                <input type="hidden" placeholder="Adresse mail" id="email1" name="email1">
+                                                <input type="hidden" placeholder="Téléphone" id="phone1" name="phone1">
+                                                <input type="hidden" placeholder="Adresse" id="adress1" name="adress1">
+                                                <input type="hidden" placeholder="Complément d'adresse" id="adress_plus1" name="adress_plus1">
+                                                <input type="hidden" placeholder="Code postal" id="postal1" name="postal1">
+                                                <input type="hidden" placeholder="Ville" id="ville1" name="ville1">
+                                                <input type="hidden" name="amount" value="{{ sommesTotale }}" id="amount"/>
+                                                <div class="form-row">
+                                                    <div class="d-flex gap-3 flex-column checkPaiement">
+                                                        <div class="d-flex ">
+                                                            <input class="form-check-input" type="radio" name="paiementCarte" id="paiementPaypal" >
+                                                            <label class="form-check-label" for="paiementCarte">
+                                                                <label for="card-element">Paypal</label>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button  style="display: none" class="connexion" id="paiementParPaypal">Payer par paypal</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {# /Paiement #}
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="margin-top-80" style="text-align: center;"><h1>Votre panier est vide</h1></div>
+                    {% endif %}
+        </div>
+              
+            </div>
+            <div class="col-md-5 col-lg-4  offset-md-1 offset-lg-2 bg-grey-clair padding-30">
+                <span class="lora size30 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-20 text-left">Récapitulatif</span>
+                <br>
+                <div id="recapPanier">
+                {% for kit in data.kits %}
+                    <div class="flex space-between  margin-bottom-10">
+                        {% if kit.formation is null %}
+                            <div>{{ kit.title }}<strong> x <span class="{{ kit.id }}">{{ kit.nombre }}</span></strong></div>
+                        {% else %}
+                            <div>{{ kit.title }}<strong> {#x <span class="{{ kit.id }}">{{ kit.nombre }}</span>#}</strong></div>
+                        {% endif %}
+                        <div>{{ kit.prixTotal }} €</div>
+                    </div>
+                {% endfor %}
+                </div>
+                {#{% if sommes.sommesKits > 0 and sommes.sommesKits < 150 %}
+                    <div class="fraisLivrsn">
+                        <hr class="hr-degrad margin-top-30 margin-bottom-30">
+
+                        <div class="flex space-between  margin-bottom-10">
+                            <div>Frais de livraison</div>
+                            <div id="fraisLivraison"> 125 € </div>
+                        </div>
+                    </div>
+                {% endif %}#}
+                <div id="signatureColissimo" style="display: none">
+                    <hr class="hr-degrad margin-top-30 margin-bottom-30">
+                    <div class="flex space-between  margin-bottom-10">
+                        <div id="messSignature">Click And Collect</div>
+                        <div id="prixSignature"> 0 € </div>
+                    </div>
+                </div>
+
+                <hr  class="hr-degrad margin-top-30 margin-bottom-30">
+                <div class="flex space-between bold  margin-bottom-10">
+                    <div>TOTAL</div>
+                    <div id="sommeTotal">{{sommesTotale}},00 €</div>
+                </div>
+                <button class="connexion" id="pcE1">Passer la commande 2/4</button>
+                <button class="connexion" id="pcE2_1" style="display: none">Passer la commande 3/4</button>
+                <button class="connexion" id="pcE2" style="display: none">Passer la commande 4/4</button>
+            </div>
+        </div>
+    </div>
+</section>
+<!--  / Actus -->
+
+

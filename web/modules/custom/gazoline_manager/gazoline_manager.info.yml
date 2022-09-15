@@ -1,0 +1,7 @@
+name: Studio Gazoline Manager
+type: module
+description: 'Permet de gérer le site'
+package: Studio Gazoline
+core_version_requirement: ^8 || ^9
+version: 9.x-1.0
+configure: gazoline_manager.form

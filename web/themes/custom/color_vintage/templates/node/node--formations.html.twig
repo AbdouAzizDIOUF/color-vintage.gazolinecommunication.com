@@ -1,0 +1,321 @@
+@&<dialog id="window3">
+    {#<button id="exit" class="close"></button>#}
+    <h2 style="text-align: center">Confirmation d'inscription !</h2>
+    <p style="text-align: center">Un mail de validation vous a été envoyé à votre adresse mail
+        <br>Merci de bien vouloir confirmer votre inscription.
+        <br>Pensez à vérifier vos spams.</p><br><br>
+    <button id="exit3" class="fermer3">Fermer</button>
+</dialog>
+
+<!-- Apropos -->
+<section class="bg-apropos-2 bg-black"  data-aos="fade" data-aos-delay="">
+    <div class="container maxwidth ">
+        <div class="container-fluid maxwidth padding-top-60 padding-bottom-20">
+            <span class="size20 light-font uppercase lineheight20 block margin-bottom-20 text-center">Formation</span>
+            <h1 class="lora size50 uppercase white bold-font margin-bottom-30 block text-center" data-aos="fade-down" data-aos-delay="200">{{ node.field_categorie.entity.name.value }}</h1>
+        </div>
+    </div>
+</section>
+<!-- / Apropos-->
+
+<div class="menu-right">
+    {% set currentUrl = path('<current>')|replace({'/':''}) %}
+    <input type="hidden" value="{{ url }}" id="currentURIfORMATION">
+    <input type="hidden" value="1" id="currentURIFormation">
+    {% if logged_in %}
+        <a onclick="addPanier({{ node.nid.value }})" style="cursor: pointer" class="show" id="show"><img src="/themes/custom/color_vintage/img/svg/deposer.svg" alt="###" style="max-width: 50px;margin-right: 40px;left: 7px;position: relative;">s'inscrire à la formation</a>
+    {% else %}
+        <a style="cursor: pointer" onclick="addPanierPopupInfo({{ node.nid.value }})"><img src="/themes/custom/color_vintage/img/svg/deposer.svg" alt="###" style="max-width: 50px;margin-right: 40px;left: 7px;position: relative;">s'inscrire à la formation</a>
+    {% endif %}
+    <a href="/financer-votre-formation"><img src="/themes/custom/color_vintage/img/svg/main.svg" alt="###" style="max-width:50px ;margin-right: 20px;">Financer ma formation</a>
+    <a href="/contacter-nous"><img src="/themes/custom/color_vintage/img/svg/question.svg" alt="###" style="max-width: 50px;left: 2px;position: relative;">Une question ?</a>
+</div>
+
+<!-- presentation -->
+<section id="presentation-formation" class="relative margin-top-60 padding-bottom-120	">
+    <div class="container-fluid maxwidth">
+        <div class="row flex ">
+            <div class="col-2 col-md-1 flex flex-column social flex-start margin-top-30">
+                <a target="_blank" href="https://twitter.com/intent/tweet?url=https://color-vintage.gazolinecommunication.com&text={{ node.title.value|raw }}"><img src="/themes/custom/color_vintage/img/svg/twitter.svg" data-aos="fade-left" data-aos-delay="200"></a>
+                {#<a href="##"><img src="/themes/custom/color_vintage/img/svg/youtube.svg" data-aos="fade-left" data-aos-delay="200"></a>#}
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url('<current>')}}"><img src="/themes/custom/color_vintage/img/svg/facebook.svg" data-aos="fade-left" data-aos-delay="200"></a>
+            </div>
+            <div class="col-10 col-md-5 relative">
+                <img src="{{ file_url(node.field_image.entity.uri.value) }}" data-aos="fade-left" data-aos-delay="200" class="objet-fit">
+            </div>
+            <div class="col-12 col-md-3 offset-md-1 relative">
+                <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">Présentation</h2>
+                {#<div class="margin-bottom-30">{{ node.body.value|raw }}</div>#}
+                <div class="margin-bottom-30" id="plusDefault">
+                    {{ node.body.value|slice(0, 600)|raw }}
+                </div>
+                <div class="margin-bottom-30" id="ensavoirplus" style="display: none">
+                    {{ node.body.value|raw }}
+                </div>
+                <br>
+                <a style="cursor: pointer" class="font-bold" id="ensavoirplusButton">voir +</a>
+                <a style="cursor: pointer; display: none " class="font-bold margin-bottom-20" id="ensavoirMoinButton">voir -</a>
+                <br>    
+                <ul class="flex flex-column formation-pictos margin-top-80">
+                    <li class="formation-temp">{{ node.field_duree.value }}</li>
+                    <li class="formation-nombre">4 stagiaires maximum</li>
+                    <li class="formation-lieu">{{ node.field_lieu.value }}</li>
+                    <li class="formation-prix">{{ node.field_prix.value }} € TTC</li>
+                </ul>
+                {% if logged_in %}
+                    <a onclick="addPanier({{ node.nid.value }})" style="cursor: pointer" class="btn margin-top-50 show" id="show">S’inscrire à la formation</a>
+                {% else %}
+                    <a style="cursor: pointer" onclick="addPanierPopupInfo({{ node.nid.value }})" class="btn margin-top-50">S’inscrire à la formation</a>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / presentation-->
+
+{% for key, item in node.field_sessions %}
+    <input type="hidden" class="dateFormationA" value="{{item.entity.field_dates.value|date('Y')}}">
+    <input type="hidden" class="dateFormationM" value="{{item.entity.field_dates.value|date('m')}}">
+    <input type="hidden" class="dateFormationD" value="{{item.entity.field_dates.value|date('d')}}">
+    <input type="hidden" class="dateFormationFinA" value="{{item.entity.field_date_fin.value|date('Y')}}">
+    <input type="hidden" class="dateFormationFinM" value="{{item.entity.field_date_fin.value|date('m')}}">
+    <input type="hidden" class="dateFormationFinD" value="{{item.entity.field_date_fin.value|date('d')}}">
+{% endfor %}
+
+<!-- formation block -->
+<section id="formation-block" class="relative margin-top-30 padding-top-120	padding-bottom-120 bg-grey-clair ">
+    <div class="container-fluid maxwidth">
+        <div class="row d-flex justify-content-evenly">
+            {% for key, item in node.field_info_sup_formation if key is not null  %}
+                <div class="col-md-3">
+                    <span class="lora size30 uppercase bold-font margin-top-30 margin-bottom-30 block lineheight30 padding-bottom-20 border-color-bottom">{{ item.entity.field_question.value }}</span>
+                    <div class="content">
+                        {{ item.entity.field_reponse.value|raw }}
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="col-md-3">
+                <span class="lora size30 uppercase bold-font margin-top-30 margin-bottom-30 block lineheight30 padding-bottom-20 border-color-bottom">Quand ?</span>
+                <div class="content">
+                    <div id="mdp-demo"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- / formation block -->
+
+
+<!-- Programme collapse  -->
+<section id="programme" class="relative margin-top-30 padding-top-120	padding-bottom-120 ">
+    <div class="container-fluid maxwidth">
+        <div class="row">
+            <div class="offset-md-1 col-md-10">
+                <h2 class="lora size30 uppercase bold-font padding-bottom-30 block lineheight30  border-color-bottom">Programme</h2>
+
+                <div class="accordion" id="collapse">
+                    {% for key, item in node.field_programme if key is not null %}
+                        <div>
+                            <h3 class="weight600 size20  black uppercase padding-top-30 padding-bottom-30" data-bs-toggle="collapse" data-bs-target="#collapse{{ key }}">{{ item.entity.field_question.value }}</h3>
+                            <div id="collapse{{ key }}" class="collapse padding-bottom-30" aria-labelledby="collapse{{ key }}" data-parent="#collapse">
+                                {{ item.entity.field_reponse.value|raw }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+</section>
+<!-- / Programme collapse -->
+
+
+<!-- Galerie Video/image -->
+<section id="galerie" class="relative margin-top-30 padding-top-120	padding-bottom-120 bg-grey-clair ">
+    <div class="container-fluid maxwidth">
+        <div class="card-columns">
+            {% for key, item in node.field_gallery if key is not null %}
+            <div class="">
+                {% if item.entity.field_image is not empty %}
+                    <img src="{{ file_url(item.entity.field_image.entity.uri.value)}}" data-aos="fade-left" data-aos-delay="200" class="objet-fit">
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- / Galerie Video/image -->
+
+
+
+<!-- DEBOUCHES /FORMATIONS COMPLEMENTAIRES -->
+<section id="debouches" class="relative margin-top-30 padding-top-120	padding-bottom-120 ">
+    <div class="container-fluid maxwidth">
+        <div class="row">
+            <div class="offset-0 col-12 col-md-5 offset-md-1">
+                <h2 class="lora size30 uppercase bold-font padding-bottom-30 block lineheight30  border-color-bottom">Débouchés</h2>
+                <br>
+                <div  class="content">
+                    <ul>
+                        {% for key, item in node.field_debouches %}
+                            <li>{{ item.entity.field_title.value }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+             <div class="offset-0 col-12 col-md-5 offset-md-1">
+                <h2 class="lora size30 uppercase bold-font padding-bottom-30 block lineheight30  border-color-bottom">Formations complémentaires</h2>
+                <br>
+                <div class="content">
+                    <ul>
+                        {% for programme in programmes %}
+                            <a href="{{ programme.link }}"><li>{{ programme.title }}</li></a>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--  DEBOUCHES /FORMATIONS COMPLEMENTAIRES -->
+{% set vale = 1 %}
+{% for key, item in node.field_faq if key is not null %}
+    {% set vale = 2 %}
+{% endfor %}
+<!-- Question collapse  -->
+{% if vale == 2 %}
+<!-- Question collapse  -->
+<section id="question" class="relative margin-top-30 padding-top-120 padding-bottom-120 ">
+    <div class="container-fluid maxwidth">
+        <div class="row flex align">
+            <div class="offset-md-1 col-md-3 margin-bottom-20">
+                <h2 class="lora size30 uppercase bold-font padding-bottom-30 block lineheight30  border-color-bottom">FAQ</h2>
+                <div class="accordion" id="collapse">
+                    {% for key, item in node.field_faq if key is not null %}
+                        <div>
+                            <h3 class="weight600 size20  black uppercase padding-top-30 padding-bottom-30" data-bs-toggle="collapse" data-bs-target="#collapse{{ key }}" aria-expanded="false">
+                                {{ item.entity.field_question.value }} ?
+                            </h3>
+                            <div id="collapse{{ key }}" class="collapse padding-bottom-30" aria-labelledby="collapse1" data-parent="#collapse">
+                                {{ item.entity.field_reponse.value|raw }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+        <div class="offset-md-1 col-md-6 margin-bottom-20">
+            <img src="{{ file_url(node.field_image_faq.entity.uri.value)}}" data-aos="fade-left" data-aos-delay="200" class="objet-fit margin-bottom-20 shadow-black-right">
+        </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+<!-- / question collapse -->
+{% set forme = 0 %}
+{% for  avais  in node.field_ils_ont_ete_formes %}
+{% set forme = forme+1 %}
+{% endfor %}
+
+<h1>{{ forme }}</h1>
+
+{% if forme !=0 %}
+<!-- formation -->
+<section id="formation-home" class="margin-top-120 margin-bottom-120">
+    <div class="container-fluid maxwidth">
+        <h2 class="lora size30 uppercase bold-font margin-bottom-100 block lineheight30 text-center">Ils ont été formés</h2>
+        <div class="row flex align">
+
+            {% for item in node.field_ils_ont_ete_formes %}
+                    <div class="offset-md-1 col-md-4  border-color-bottom">
+                        <div class="row">
+                            <div class="offset-md-0  col-md-6"><img  src="{{ file_url(item.entity.field_picture.entity.uri.value)}}" data-aos="fade-right" data-aos-delay="200" class="margin-auto block"></div>
+                            <div class="offset-md-0 col-md-6"  data-aos="fade-down" data-aos-delay="300">
+                                <span class="size20 light-font uppercase lineheight20 block margin-top-100  margin-bottom-20">{{ item.entity.field_nom_complet.value }}</span>
+                                <div class="margin-bottom-30"> {{ item.entity.field_temoignage.value|raw}} </div>
+                            </div>
+                        </div>
+                    </div>
+               {# <div class="offset-md-2 col-md-4 border-color-bottom">
+                    <div class="row">
+                        <div class="offset-md-0  col-md-6 "><img  src="{{ file_url(item.entity.field_picture.entity.uri.value)}}" data-aos="fade-right" data-aos-delay="200" class="margin-auto block"></div>
+                        <div class="offset-md-0 col-md-6"  data-aos="fade-down" data-aos-delay="300">
+                            <span class="size20 light-font uppercase lineheight20 block margin-top-100  margin-bottom-20">{{ item.entity.field_nom_complet.value }}</span>
+                            <div class="margin-bottom-30"> {{ item.entity.field_temoignage.value|raw}} </div>
+                        </div>
+                    </div>
+                </div>#}
+
+            {% endfor %}
+        </div>
+        <span class="margin-top-120 block">
+
+           {% if logged_in %}
+                <a onclick="addPanier({{ node.nid.value }})" style="cursor: pointer " class="btn margin-auto block show" id="show">s'inscrire à la formation</a>
+            {% else %}
+                <a onclick="addPanierPopupInfo({{ node.nid.value }})" style="cursor: pointer " class="btn margin-auto block" >s'inscrire à la formation</a>
+            {% endif %}
+
+        </span>
+    </div>
+</section>
+<!-- / formation -->
+{% endif %}
+
+
+<!--  Actus -->
+<section class="actus-home padding-top-120 padding-bottom-120 bg-grey-clair">
+    <div class="container-fluid maxwidth" >
+        <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30 text-center">Nos actus sur le sujet</h2>
+
+        <div class="padding-top-60">
+            <div class="slide-actus">
+
+                {% for article in articles %}
+                    <div class="hovereffect text-center">
+                        <div>
+                            <a href="{{ article.link }}"><div class="overlay"></div></a>
+                            <img class="block text-center margin-auto" src="{{ article.image }}" >
+                        </div>
+                        <a href="{{ article.llink }}"><span class="size20 light-font uppercase text-center lineheight20 block margin-top-30 margin-bottom-20">{{ kit.title }}</span></a>
+                        <div class="size13 block text-center  lineheight15 block " >{{ article.body|slice(0, 90)|raw }} ...</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <span class="margin-top-120 block">
+			<a href="/actualites-conseils-beaute" class="btn margin-auto block">toutes les actualités et conseils</a>
+		</span>
+    </div>
+</section>
+<!--  / Actus -->
+
+
+
+<!-- Apropos -->
+{{ drupal_entity('block', 'noskitsprofessionnels') }}
+
+<!-- Apropos -->
+
+<!-- / Apropos-->
+
+<!-- / Apropos-->
+
+
+<dialog id="window">
+    <button id="exit" class="close"></button>
+    <h2 style="text-align: center">Ajout au panier</h2>
+    <p style="text-align: center">Ce produit à été ajouté au panier</p><br><br>
+    <button id="exit2" class="fermer">Fermer</button>
+</dialog>
+
+
+<dialog id="window2">
+    <div class="modal-image">
+        <svg viewBox="0 0 32 32" style="fill:#48DB71"><path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path></svg>
+    </div>
+    <p style="text-align: center">Merci de vous authentifier pour pouvoir accéder à votre panier.</p><br><br>
+    <span style="text-align: center;" class="fermer2"><button id="exit2" style="background-color: black;color: white;border: 0;border-radius: 50px !important; margin: auto; padding: 5px;padding-left: 20px;padding-right: 20px;font-weight: 300;" class="exit2">Fermer</button>&nbsp;&nbsp;&nbsp;<a href="/user-login" id="addProduitPanierpopup" class="connexion2">Connexion</a></span>
+</dialog>

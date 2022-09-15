@@ -1,0 +1,21 @@
+{
+    "name": "drupal/adminimal_gazoline",
+    "description": "Menu for administration with adminimal theme",
+    "type": "drupal-custom-module",
+    "homepage": "https://git.gazolinecommunication.com/gazoline/adminimal_gazoline.git",
+    "authors": [
+        {
+            "name": "Gabriel Tirfort",
+            "homepage": "https://git.gazolinecommunication.com/gazoline/adminimal_gazoline.git",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "source": "https://git.gazolinecommunication.com/gazoline/adminimal_gazoline.git"
+    },
+    "require": {
+        "drupal/adminimal_admin_toolbar": "^1.5",
+        "drupal/fontawesome": "^2.0",
+        "drupal/adminimal_theme": "^1.3"
+    }
+}

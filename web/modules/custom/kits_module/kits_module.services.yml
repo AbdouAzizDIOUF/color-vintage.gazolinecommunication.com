@@ -1,0 +1,13 @@
+services:
+  kits_module.service:
+    class:  Drupal\kits_module\Service\KitsService
+  kits_module_commande.service:
+    class: Drupal\kits_module\Service\CommandeService
+
+#articles_service:
+#  kits_module.articles_service:
+#    class: Drupal\kits_module\Service\ArticlesService
+
+#formations_service:
+#  kits_module.formations_service:
+#    class: Drupal\kits_module\Service\FormationsService

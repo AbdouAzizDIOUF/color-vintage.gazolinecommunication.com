@@ -1,0 +1,3 @@
+services:
+  offres_module.service:
+    class:  Drupal\offres_module\Service\OffresService

@@ -1,0 +1,8 @@
+name: Theme Suggestions
+type: module
+description: 'Affiche des suggestions de thèmes supplémentaires'
+package: Studio Gazoline
+
+version: '8.x-1.0'
+core: '8.x'
+project: 'gz_theme_suggestions'

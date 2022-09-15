@@ -1,0 +1,33 @@
+gz_pages.form:
+  path: '/admin/config/system/gazoline-manager/pages'
+  defaults:
+    _form: 'Drupal\gz_pages\Form\GzPagesForm'
+    _title: 'Pages'
+  requirements:
+    _permission: 'gazoline'
+
+# USERLOGIN
+login.content:
+  path: '/user-login'
+  defaults:
+    _controller: '\Drupal\gz_pages\Controller\loginController::content'
+    _title: 'User login'
+  requirements:
+    _permission: 'access content'
+
+login.checkMail:
+  path: '/user-checkMail'
+  defaults:
+    _controller: '\Drupal\gz_pages\Controller\loginController::checkMail'
+    _title: 'User login'
+  requirements:
+    _permission: 'access content'
+
+login.checkUserName:
+  path: '/user-checkUserName'
+  defaults:
+    _controller: '\Drupal\gz_pages\Controller\loginController::checkUserName'
+    _title: 'User login'
+  requirements:
+    _permission: 'access content'
+

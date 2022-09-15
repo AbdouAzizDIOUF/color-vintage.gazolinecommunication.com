@@ -1,0 +1,17 @@
+<?php
+function payment_module_theme($existing, $type, $theme, $path): array
+{
+
+    return [
+
+        'monespace' => [
+            'variables' => [
+                'commandes' => NULL,
+                'kits' => NULL,
+                'formations' => NULL,
+                'userInfo' => NULL,
+            ],
+        ]
+    ];
+
+}

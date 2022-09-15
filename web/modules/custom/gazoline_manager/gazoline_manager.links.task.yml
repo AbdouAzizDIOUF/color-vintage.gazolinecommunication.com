@@ -1,0 +1,4 @@
+gazoline_manager.admin:
+  title: 'Informations'
+  route_name: gazoline_manager.form
+  base_route: gazoline_manager.form

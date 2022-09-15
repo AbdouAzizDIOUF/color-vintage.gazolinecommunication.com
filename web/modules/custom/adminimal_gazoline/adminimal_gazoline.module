@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function adminimal_gazoline_theme($existing, $type, $theme, $path)
+{
+  return [
+      'menu-admin' => [
+          'variables' => [
+              'menu' => NULL,
+              'colors' => NULL,
+          ],
+      ],
+  ];
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+/*function adminimal_gazoline_page_attachments(array &$attachments)
+{
+  $theme = \Drupal::service('theme.manager')->getActiveTheme();
+
+  if ($theme->getName() == 'adminimal_theme') {
+    $attachments['#attached']['library'][] = 'adminimal_gazoline/global-styling';
+  }
+}*/

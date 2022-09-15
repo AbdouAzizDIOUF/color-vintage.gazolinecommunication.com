@@ -1,0 +1,39 @@
+styles:
+  css:
+    theme:
+      css/bootstrap.min.css: {}
+      css/aos.css: {}
+      css/bootstrap-grid.css: {}
+      css/slick.css: {}
+      css/slick-theme.css: {}
+      css/app.css: {}
+      css/jquery.range.css: {}
+      css/jquery-ui.css: {}
+      css/jquery-ui.multidatespicker.css: {}
+  dependencies:
+    - color_vintage/fonts
+
+fonts:
+  css:
+    theme:
+      'https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Poppins:wght@100;300;500;700;800;900&display=swap': { type: external, attributes: { defer: true} }
+scripts:
+  js:
+    js/jquery-3.3.1.min.js:  { attributes: { defer: true, async: false} }
+    js/jquery.validate.min.js:  { attributes: { defer: true, async: false} }
+    js/jquery-ui.multidatespicker.js:  { attributes: { defer: true, async: false} }
+
+    js/jquery-ui.js:  { attributes: { defer: true, async: false} }
+    js/slick.min.js: { attributes: { defer: true, async: false} }
+    js/aos.js: {attributes: { defer: true, async: false} }
+    js/bootstrap.min.js: {attributes: { defer: true, async: false} }
+    https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.js: {type: external, attributes: { defer: true, async: false} }
+    https://uicdn.toast.com/tui-calendar/latest/tui-calendar.js: {type: external, attributes: { defer: true, async: false} }
+    https://js.stripe.com/v3/: { type: external, attributes: { defer: true, async: false} }
+    js/moment.min.js: {}
+    js/moment-fr.min.js: {}
+    js/jquery.range.js:  { attributes: { defer: true, async: false} }
+    js/stripe.js:  { attributes: { defer: true, async: false} }
+    js/main.js: {attributes: { defer: true, async: false} }
+  dependencies:
+    - core/jquery

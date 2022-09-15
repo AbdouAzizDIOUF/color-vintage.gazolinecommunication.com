@@ -1,0 +1,16 @@
+<section id="kits-home" class="relative" >
+    <div class="container-fluid maxwidth">
+        <div class="row flex align">
+            <div class="col-md-6 col-lg-5" >
+                <img src="{{ content.field_image|render|striptags|trim }}" data-aos="fade-right" data-aos-delay="200">
+            </div>
+            <div class="offset-md-0 col-md-6 offset-lg-2 col-lg-3 margin-top-60" data-aos="fade-left" data-aos-delay="">
+                {{ title_prefix }}
+                <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{ content.field_titre }}</h2>
+                {{ title_suffix }}
+                <div class="margin-bottom-30">{{content.body|raw}}</div>
+                <span><a href="{{content.field_lien[0]['#url']|default('#')}}" class="btn">{{ content.field_lien[0]['#title'] }}</a></span>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,11 @@
+name: Blocks
+type: module
+description: 'Gestion des blocks'
+package: Studio Gazoline
+configure: gz_blocks.form
+dependencies:
+ - gazoline_manager
+
+version: '8.x-1.0'
+core: '8.x'
+project: 'gz_blocks'

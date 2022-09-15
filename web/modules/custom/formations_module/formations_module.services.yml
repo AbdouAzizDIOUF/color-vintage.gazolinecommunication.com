@@ -1,0 +1,3 @@
+services:
+  formations_module.service:
+    class:  Drupal\formations_module\Service\FormationsService

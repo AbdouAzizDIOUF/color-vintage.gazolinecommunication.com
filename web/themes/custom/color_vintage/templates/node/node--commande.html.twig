@@ -1,0 +1,153 @@
+<section>
+    <div class="container-fluid maxwidthsmall" >
+        <div class="row">
+            <div class="margin-bottom-20" >
+                <img src="/themes/custom/color_vintage/img/header-facture.jpg" >
+            </div>
+            {% set livraison='' %}
+            {% set sommeKits = 0 %}
+            <table class="margin-top-50" style="width: 100%;">
+                <thead>
+                    <td style="margin-right: 10%">
+                        {% for key, item in node.field_livraison_coordonnee if key is not null%}
+                            {% set livraison = item.entity.field_type_de_livraison.value %}
+                            <span class="lora size20 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-10">{{item.entity.field_prenom.value}} {{item.entity.field_nom.value}}</span>
+                            <p class="size20">{{item.entity.field_adresse.value}} <br>
+                                {{item.entity.field_code_postal.value}}<br>
+                                {{item.entity.field_ville.value}}<br>
+                                France<br><br>
+                                {{item.entity.field_email.value}}<br>
+                                {{item.entity.field_telephone.value}}</p>
+                        {% endfor %}
+                    </td>
+                    <td width="30%"></td>
+                    <td class="text-right">
+                        <span class="lora size20 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-10">Color Vintage Academy</span>
+                        <p  class="size20">
+                            Zone de Fréjorgues Ouest,<br> 165 Rue Roland Garros,<br>
+                            34130 Montpellier<br>
+                            France<br><br>
+                            colorvintageformation@gmail.com<br>
+                            04 99 64 72 70</p>
+                    </td>
+                </thead>
+            </table>
+            {#<div class="row d-flex">
+                <div class="col-md-6">
+                    {% set livraison = '' %}
+                    {% set sommeKits = 0 %}
+                    {% for key, item in node.field_livraison_coordonnee %}
+                        {% set livraison = item.entity.field_type_de_livraison.value %}
+                    <span class="lora size20 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-10 text-left">{{item.entity.field_prenom.value}} {{item.entity.field_nom.value}}</span>
+                    <p class="size20">{{item.entity.field_adresse.value}} <br>
+                        {{item.entity.field_code_postal.value}}<br>
+                        {{item.entity.field_ville.value}}<br>
+                        France<br><br>
+                        {{item.entity.field_email.value}}<br>
+                        {{item.entity.field_telephone.value}}</p>
+                    {% endfor %}
+                </div>
+                <div class="col-md-4">
+                    <span class="lora size20 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-10 text-left">Color Vintage Academy</span>
+                    <p  class="size20">
+                        Zone de Fréjorgues Ouest, 165 Rue Roland Garros,<br>
+                        34130 Montpellier<br>
+                        France<br><br>
+                        mail@colorvintage.com<br>
+                        04 99 64 72 70</p>
+                </div>
+            </div>#}
+        </div>
+        <div class="row" style="margin-top:100px;">
+            <div class="col-6 col-md-6" style="border-right: 1px solid #ababab;">
+                <span class="lora size20 bold-font uppercase lineheight30 block text-left">Commande</span>
+                <span class="size20 light-font">N°: {{node.field_numero_commande.value}}</span>
+            </div>
+        </div>
+        <table class="margin-top-50" style="width: 100%;">
+            <thead style="border-bottom: 1px solid #ababab;border-top: 1px solid #ababab;" >
+            <tr >
+                <td class="lora size20 bold-font uppercase lineheight30 padding-top-30 padding-bottom-30" style="width: 50%">Description</td>
+                <td class="lora size20 bold-font uppercase lineheight30 padding-top-30 padding-bottom-30  text-center">Quantité</td>
+                <td class="lora size20 bold-font uppercase lineheight30 padding-top-30 padding-bottom-30  text-center">Prix unitaire</td>
+                <td class="lora size20 bold-font uppercase lineheight30 padding-top-30 padding-bottom-30  text-center" style="width: 7%">Total</td>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for key, item in node.field_mes_produits if key is not null %}
+                {% if item.entity.field_kits.entity.getType=="nos_kits" %}
+                    <tr>
+                        <td>
+                            <span class="size20 bold-font block margin-top-30">{{item.entity.field_kits.entity.title.value}}</span>
+                            <span class="size20 light-font">Kit</span>
+                        </td>
+                        <td class="size20 bold-font text-center">{{item.entity.field_nombre.value}}</td>
+                        {% set price = item.entity.field_kits.entity.field_prix.value * item.entity.field_nombre.value %}
+                        <td class="size20 bold-font text-center">{{item.entity.field_kits.entity.field_prix.value}},00€</td>
+                        <td class="size20 bold-font text-center">{{price}},00€</td>
+                        {% set sommeKits = sommeKits+price %}
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
+            {% for key, item in node.field_mes_produits if key is not null %}
+                {% if item.entity.field_kits.entity.getType=="formations" %}
+                    <tr>
+                        <td>
+                            <span class="size20 bold-font block margin-top-30">{{item.entity.field_kits.entity.title.value}}</span>
+                            <span class="size20 light-font">Formation</span>
+                        </td>
+                        <td class="size20 bold-font text-center"></td>
+                        <td class="size20 bold-font text-center">{{item.entity.field_kits.entity.field_prix.value}},00€</td>
+                        <td class="size20 bold-font text-center">{{item.entity.field_kits.entity.field_prix.value}},00€</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+
+
+            <tr style="border-top: 1px solid #ababab;">
+                <td  style="width: 50%;">
+                    {% if sommeKits>0 %}
+                        <span class="size20 bold-font block margin-top-30">Livraison</span>
+                        <span class="size20 light-font block " style="margin-bottom: 40px;">{{ livraison }}</span>
+                    {% endif %}
+                </td>
+                <td class="size20 bold-font text-center"></td>
+                <td class="size20 bold-font text-center"></td>
+                {% if livraison =='Colissimo Sans Signature' %}
+                    {% if sommeKits > 150 %}
+                        <td class="size20 bold-font text-center">0,00€</td>
+                    {% else %}
+                        <td class="size20 bold-font text-center">8,00€</td>
+                    {% endif %}
+                {% elseif livraison =='Colissimo Avec Signature' %}
+                    {% if sommeKits > 150 %}
+                        <td class="size20 bold-font text-center">0,00€</td>
+                    {% else %}
+                        <td class="size20 bold-font text-center">9,00€</td>
+                    {% endif %}
+                {% else %}
+                    <td class="size20 bold-font text-center">0,00€</td>
+                {% endif %}
+            </tr>
+            <tfoot style="border-bottom: 1px solid #ababab;border-top: 1px solid #ababab;" >
+            <tr>
+                <td>
+                    <span class="lora size20 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-30" >Total TTC</span>
+                </td>
+                <td class="size20 bold-font text-center"></td>
+                <td class="size20 bold-font text-center"></td>
+                <td class="size20 bold-font text-center">{{ node.field_somme_totale.value }},00€</td>
+            </tr>
+            </tfoot>
+            </tbody>
+        </table>
+        <div class="row margin-top-100 margin-bottom-50">
+            <span class="lora size16 bold-font uppercase lineheight30 block text-left">Information sur l’entreprise</span>
+            <span class="uppercase size16">SIRET N°79208768600020</span>
+            <p class="size16">Numéro de TVA 0000000000<br>
+                Numéro d’identification<br>000000000</p>
+        </div>
+    </div>
+</section>

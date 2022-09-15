@@ -1,0 +1,114 @@
+<br>
+<br>
+<section class="">
+    <div class="container-fluid maxwidthsmall" >
+        <div class="row">
+            <div class=" margin-bottom-20" >
+                <img src="/themes/custom/color_vintage/img/header-facture.jpg" >
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <span class="lora size20 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-10 text-left">{{data.livraison.nom}} {{data.livraison.prenom}}</span>
+                    <p class="size20">{{ data.livraison.adresse }}<br>
+                        {{ data.livraison.code }} {{ data.livraison.ville }}<br>
+                        France<br><br>
+                        {{ data.livraison.email }}<br>
+                        {{ data.livraison.telephone }}</p>
+                </div>
+                <div class="col-4">
+                    <span class="lora size20 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-10 text-left">Color Vintage Academy</span>
+                    <p  class="size20">
+                        Adresse postal<br>
+                        CP Ville<br>
+                        France<br><br>
+                        prenom.nom@mail.com<br>
+                        00.00.00.00.00</p>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-top:100px;">
+            {#<div class="col-4 col-md-2" style="border-right: 1px solid #ababab;">
+                <span class="lora size20 bold-font uppercase lineheight30 block  text-left">Facture</span>
+                <span class="size20 light-font">N° 000000</span>
+            </div>#}
+            <div class="col-4 col-md-2" style="border-right: 1px solid #ababab;">
+                <span class="lora size20 bold-font uppercase lineheight30 block  text-left">Commande</span>
+                <span class="size20 light-font">N° {{ data.commandes.numCommande }}</span>
+            </div>
+            {#<div class="col-4 col-md-2">
+                <span class="lora size20 bold-font uppercase lineheight30 block  text-left">Client</span>
+                <span class="size20 light-font">N° 000000</span>
+            </div>#}
+        </div>
+        <table class="margin-top-50" style="width: 100%;">
+            <thead style="border-bottom: 1px solid #ababab;border-top: 1px solid #ababab;" >
+            <tr >
+                <td class="lora size20 bold-font uppercase lineheight30 padding-top-30 padding-bottom-30" style="width: 50%">Description</td>
+                <td class="lora size20 bold-font uppercase lineheight30 padding-top-30 padding-bottom-30  text-center">Quantité</td>
+                <td class="lora size20 bold-font uppercase lineheight30 padding-top-30 padding-bottom-30  text-center">Prix unitaire</td>
+                <td class="lora size20 bold-font uppercase lineheight30 padding-top-30 padding-bottom-30  text-center" style="width: 7%">Total</td>
+            </tr>
+            </thead>
+            <tbody>
+            {% set sommeKit = 0 %}
+            {% for kit in data.kits %}
+                <tr>
+                    <td>
+                        <span class="size20 bold-font block margin-top-30">{{ kit.title }}</span>
+                        <span class="size20 light-font">Kit</span>
+                    </td>
+                    <td class="size20 bold-font text-center">{{ kit.nombre }}</td>
+                    <td class="size20 bold-font text-center">{{ kit.prix }},00 €</td>
+                    <td class="size20 bold-font text-center">{{ kit.prixTotal }},00 €</td>
+                </tr>
+                {% set sommeKit = sommeKit+kit.prixTotal %}
+            {% endfor %}
+            {% for formation in data.formations %}
+                <tr>
+                    <td>
+                        <span class="size20 bold-font block margin-top-30">{{ formation.title }}</span>
+                        <span class="size20 light-font">Formation</span>
+                    </td>
+                    <td class="size20 bold-font text-center">-</td>
+                    <td class="size20 bold-font text-center">-</td>
+                    <td class="size20 bold-font text-center">{{ formation.prix }},00 €</td>
+                </tr>
+            {% endfor %}
+
+
+
+            <tr style="border-top: 1px solid #ababab;">
+                <td  style="width: 50%;">
+                    <span class="size20 bold-font block margin-top-30">Livraison</span>
+                    <span class="size20 light-font block " style="margin-bottom: 40px;">{{ data.livraison }}</span>
+                </td>
+                <td class="size20 bold-font text-center"></td>
+                <td class="size20 bold-font text-center"></td>
+                {% if sommeKit < 150 and  data.livraison == 'Colissimo Avec Signature'  %}
+                    <td class="size20 bold-font text-center">9,00 €</td>
+                {% elseif sommeKit < 150 and  data.livraison == 'Colissimo Sans Signature' %}
+                    <td class="size20 bold-font text-center">8,00 €</td>
+                {% else %}
+                    <td class="size20 bold-font text-center">00,00 €</td>
+                {% endif %}
+            </tr>
+            <tfoot style="border-bottom: 1px solid #ababab;border-top: 1px solid #ababab;" >
+            <tr>
+                <td>
+                    <span class="lora size20 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-30">Total TTC</span>
+                </td>
+                <td class="size20 bold-font text-center"></td>
+                <td class="size20 bold-font text-center"></td>
+                <td class="size20 bold-font text-center">{{ data.commandes.prixTotal }},00 €</td>
+            </tr>
+            </tfoot>
+            </tbody>
+        </table>
+        <div class="row margin-top-100 margin-bottom-50">
+            <span class="lora size16 bold-font uppercase lineheight30 block text-left">Information sur l’entreprise</span>
+            <span class="uppercase size16">SIRET N°79208768600020</span>
+            <p class="size16">Numéro de TVA 0000000000<br>
+                Numéro d’identification<br>000000000</p>
+        </div>
+    </div>
+</section>

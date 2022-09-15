@@ -1,0 +1,136 @@
+
+<!-- Apropos -->
+<section class="bg-apropos-2 bg-black"  data-aos="fade" data-aos-delay="">
+    <div class="container maxwidth ">
+        <div class="container-fluid maxwidth padding-top-60 padding-bottom-20">
+            <span class="size20 light-font uppercase lineheight20 block margin-bottom-20 text-center" data-aos="fade-down" data-aos-delay="200">A Propos</span>
+            <h1 class="lora size50 uppercase white bold-font margin-bottom-30 block text-center" data-aos="fade-down" data-aos-delay="200">{{ label }}</h1>
+            <ul class="list-formation flex justify-center align" id="apropos">
+                <li class="uppercase {% if "/a-propos" in url('<current>')['#markup'] %}active{% endif %}"><a href="/a-propos">Présentation</a></li>
+                <li class="uppercase {% if "/a-propos-equipe" in url('<current>')['#markup'] %}active{% endif %}"><a href="/a-propos-equipe">Équipe</a></li>
+                <li class="uppercase {% if "/a-propos-cadre-de-formation" in url('<current>')['#markup'] %}active{% endif %}"><a href="/a-propos-cadre-formation">Cadre de formation</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div>
+
+</div>
+<!-- / Apropos-->
+<div class="menu-right">
+    <a href="##"><img src="/themes/custom/color_vintage/img/svg/formateur.svg" alt="###" style="max-width: 50px;margin-right: 40px;left: 7px;position: relative;">Lorem ipsum color</a>
+    <a href="##"><img src="/themes/custom/color_vintage/img/svg/maquille.svg" alt="###" style="max-width:50px ;margin-right: 20px;">Lorem ipsum color</a>
+    <a href="##"><img src="/themes/custom/color_vintage/img/svg/question.svg" alt="###" style="max-width: 50px;left: 2px;
+position: relative;">Lorem ipsum color</a>
+</div>
+<!-- nos locaux -->
+<section id="nos-locaux" class="relative">
+    <div class="container-fluid maxwidth">
+        <div class="row flex align">
+            <div class="col-md-12 relative">
+                <img src="{{ file_url(node.field_image.entity.uri.value) }}" data-aos="fade-left" data-aos-delay="200" class="objet-fit" style="max-height:620px;">
+            </div>
+        </div>
+    </div>
+    <div class="text-margin-neg-280 bg-light-grey padding-top-280 padding-bottom-280  ">
+        <div class="container-fluid maxwidth">
+            <div class="row flex align">
+                <div class="col-md-12 margin-top-60 padding-right-120" data-aos="fade-right" data-aos-delay="">
+                    <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{ node.field_nos_locaux_titre.value }}</h2>
+                    <div class="margin-bottom-30">{{ node.field_nos_locaux_body.value|raw }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid maxwidth text-margin-neg-280 margin-bottom-60">
+        <div class="row flex align">
+            {% for key, item in node.field_nos_locaux_galery if key is not null %}
+                <div class="col-md-4">
+                    {% if item.entity.field_image is not empty %}
+                        <img src="{{ file_url(item.entity.field_image.entity.uri.value)}}" data-aos="fade-left" data-aos-delay="200" class="objet-fit">
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- / nos locaux -->
+
+
+
+{% set i=0 %}
+{% for key, item in node.field_divers_infos if key is not null  %}
+    {% if i==0   %} {#is divisible by (2)#}
+        <!-- Apropos -->
+    <section class="bg-outil" data-aos="fade" data-aos-delay="" style="background-image: url({{ file_url(item.entity.field_image.entity.uri.value)}})">
+        <div class="container maxwidth ">
+            <div class="container-fluid maxwidth padding-top-100 padding-bottom-100">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{item.entity.field_sous_titre.value}}</h2>
+                        <div>{{item.entity.field_description.value|raw}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <!-- / Apropos-->
+    {% elseif i is not divisible by (2) %}
+    <section id="accompagnement" class="relative" >
+        <div class="container-fluid maxwidth">
+            <div class="row flex align">
+                <div class="col-md-6 col-lg-5 margin-top-120" >
+                    <img src="{{ file_url(item.entity.field_image.entity.uri.value)}}" data-aos="fade-right" data-aos-delay="200" class="shadow-black">
+                </div>
+                <div class="offset-md-0 col-md-6 offset-lg-1 col-lg-5 margin-top-60" data-aos="fade-left" data-aos-delay="">
+                    <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{item.entity.field_sous_titre.value}}</h2>
+                    <div class="margin-bottom-30">{{item.entity.field_description.value|raw}}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% elseif i is divisible by (2) %}
+    <section id="environnement" class="relative  padding-bottom-140">
+        <div class="container-fluid maxwidth">
+            <div class="row flex align">
+                <div class="offset-md-0 col-md-6 col-lg-6 margin-top-60 order-2" data-aos="fade-right" data-aos-delay="">
+                    <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{item.entity.field_sous_titre.value}}</h2>
+                    <div class="margin-bottom-30">{{item.entity.field_description.value|raw}}</div>
+                </div>
+                <div class="offset-md-0 col-md-6 offset-lg-1 col-lg-5 order-1  margin-bottom-120 relative">
+                    <img src="{{ file_url(item.entity.field_image.entity.uri.value)}}" data-aos="fade-left" data-aos-delay="200">
+                    <img src="/themes/custom/color_vintage/img/accomp3.jpg" data-aos="slide-down" data-aos-delay="400" class="forme-back">
+                </div>
+            </div>
+        </div>
+    </section>
+
+        {#<section id="pourquoi1" class="relative" >
+            <div class="container-fluid maxwidth  margin-top-100">
+                <div class="row flex align">
+                    <div class="offset-md-1 col-md-5 col-lg-5" >
+                        <img src="{{ file_url(item.entity.field_image.entity.uri.value)}}" data-aos="fade-right" data-aos-delay="200">
+                    </div>
+                    <div class="offset-md-0 col-md-6 offset-lg-1 col-lg-3 margin-top-60" data-aos="fade-left" data-aos-delay="">
+                      flex-start margin-left-100-neg">
+                            #}{#<img src="{{ file_url(item.entity.field_icon.entity.fileuri) }}" alt="###" data-aos="fade-right" data-aos-delay="200" height="80" class="margin-right-30">#}{#
+                            <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{item.entity.field_sous_titre.value}}</h2>
+                        </div>
+                        <div class="margin-bottom-30">{{ item.entity.field_description.value|raw }}</div>
+                    </div>
+                </div>
+            </div>
+        </section>#}
+    {% endif %}
+    {% set i=i+1 %}
+{% endfor %}
+
+
+
+
+endfor %}
+
+
+
+

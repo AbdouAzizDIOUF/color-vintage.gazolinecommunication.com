@@ -1,0 +1,253 @@
+<dialog id="window3">
+  {#<button id="exit" class="close"></button>#}
+  <h2 style="text-align: center">Confirmation d'inscription !</h2>
+  <p style="text-align: center">Un mail de validation vous a été envoyé à votre adresse mail
+    <br>Merci de bien vouloir confirmer votre inscription.
+    <br>Pensez à vérifier vos spams.</p><br><br>
+  <button id="exit3" class="fermer3">Fermer</button>
+</dialog>
+
+<!-- Slider -->
+<section id="slider" class="relative bg-black" data-aos="fade" data-aos-delay="">
+  <div class="container-fluid maxwidth">
+    <div class="slider-home">
+      {% for key, item in node.field_header_image_home_page  %}
+        <div class="item">
+          {% if item.entity.field_image is not empty %}
+            <img src="{{ file_url(item.entity.field_image.entity.uri.value)}}">
+          {% endif %}
+          <div class="item-text">
+            <h1 class="lora size25 uppercase white bold-font margin-bottom-30 block" data-aos="fade-down" data-aos-delay="1000">{{item.entity.field_titre.value}}</h1>
+            <div class="lora size50 black bold-font margin-bottom-30" data-aos="fade-down" data-aos-delay="1500">{{item.entity.field_description.value|raw}}</div>
+            <span data-aos="fade-down" data-aos-delay="2000"><a href="{{item.entity.field_nos_formations.0.url|render}}" class="btn">{{item.entity.field_nos_formations.0.title|render}}</a></span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- / Slider -->
+
+<!-- reassurance -->
+
+<section id="reassurance" class="padding-top-60 padding-bottom-60" data-aos="fade" data-aos-delay="">
+  <div class="container-fluid maxwidth">
+    <div class="items flex justify-evenly">
+
+      {% for key, item in node.field_accordeon_header_home_page  %}
+        <!-- Item -->
+        <div class="item" data-aos="fade-up" data-aos-delay="300">
+          <img src="{{ file_url(item.entity.field_icon.entity.fileuri)}}" alt="###">
+          <p class="margin-top-10 block">{{item.entity.field_titre.value|raw}}</p>
+        </div>
+        <!-- / Item -->
+      {% endfor %}
+
+    </div>
+  </div>
+</section>
+<!-- / reassurance -->
+
+
+<!-- Apropos -->
+<section class="bg-apropos bg-black" style="background-image: url({{ file_url(node.field_a_propos_image.entity.uri.value) }})" data-aos="fade" data-aos-delay="">
+  <div class="container maxwidth ">
+    <div class="container-fluid maxwidth padding-top-120 padding-bottom-120">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="lora size30 uppercase white bold-font margin-bottom-30 block" data-aos="fade-down" data-aos-delay="200">{{node.field_titre_center.value}}</h2>
+          <div class="white margin-bottom-30" data-aos="fade-down" data-aos-delay="250">{{ node.field_desciption_center.value|raw }}</div>
+          <span data-aos="fade-down" data-aos-delay="300">
+              <a href="{{node.field_a_propos_color_vintage.0.url|render}}" class="btn white-btn">{{node.field_a_propos_color_vintage.0.title|render}}</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- / Apropos-->
+
+
+<section class="section padding-top-120 padding-bottom-120 bg-grey-clair">
+   <div class="container-fluid maxwidth" >
+        <div class="accordion" id="accordion">
+          <h2 class="lora size30 uppercase bold-font margin-bottom-30 block text-center" data-aos="fade-down" data-aos-delay="200">Nos prochaines formations</h2>
+          <div class="next-learn flex justify-center">
+            {% set i=0 %}
+            {% for cat in categories  %}
+                <a href="##" class="" data-bs-toggle="collapse" data-bs-target="#collapse{{cat.id}}" aria-expanded="true" aria-controls="collapse{{cat.id}}">{{cat.name}}</a>
+              {% set i=i+1 %}
+            {% endfor %}
+          </div>
+          <div class="row">
+              {% set j=0 %}
+              {% for key, formation in formations %}
+                {% if j==0 %}
+                    <div class="collapse show padding-top-80" id="collapse{{key}}" data-bs-parent="#accordion">
+                      <div class="slide-accordion">
+                        {% for item in formation %}
+                          <div class="item-accordion col-md-4">
+                            <div class="card card-body card-shadow">
+                              <div class="hovereffect">
+                                <span class="date size20 light-font" style="text-align: center">{{ item.date_debut|date('d/m/Y')}}</span>
+                                <span class="lora size20 block uppercase bold-font text-center">{{ item.title}}</span>
+                                <a href="##" class="btn btn-hover" style="margin: auto;">&nbsp;</a>
+                                <div class="overlay">
+                                  <div class="size13">{{ item.body|raw }}</div>
+                                  <a href="{{item.link}}" class="btn">&nbsp;</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                {% else %}
+                    <div class="collapse padding-top-80" id="collapse{{key}}" data-bs-parent="#accordion">
+                        <div class="slide-accordion">
+                          {% for item in formation %}
+                            <div class="item-accordion col-md-4">
+                              <div class="card card-body card-shadow">
+                                <div class="hovereffect">
+                                  <span class="date size20 light-font" style="text-align: center">{{ item.duree }}</span>
+                                  <span class="lora size20 block uppercase bold-font text-center">{{ item.title}}</span>
+                                  <a href="##" class="btn btn-hover" style="margin: auto;">&nbsp;</a>
+                                  <div class="overlay">
+                                    <div class="size13">{{ item.body|raw }}</div>
+                                    <a href="{{item.link}}" class="btn">&nbsp;</a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+                {% set j=j+1 %}
+              {% endfor %}
+          </div>
+        <a href="/agenda-formation" class="btn margin-auto block">Voir l’agenda</a>
+      </div>
+    </div>
+</section>
+
+{#{{ drupal_entity('block', 'formationblock') }}
+{{ drupal_entity('block', 'kitblock') }}#}
+
+<!-- Financer -->
+{% for formation in formationsHP %}
+  {% if formation.order=='odd' %}
+    <section id="financer-home" class="relative">
+      <div class="container-fluid maxwidth">
+        <div class="row flex align">
+          <div class="offset-md-0 col-md-6 offset-lg-2 col-lg-3 margin-top-60 order-2" data-aos="fade-right" data-aos-delay="">
+            <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{formation.title}}</h2>
+            <div class="margin-bottom-30 ">{{ formation.body|raw }}</div>
+            <span><a href="{{ formation.link }}" class="btn">En savoir plus</a></span>
+          </div>
+          <div class="offset-md-0 col-md-6 offset-lg-2 col-lg-5 order-1">
+            <img src="{{ formation.image }}" data-aos="fade-left" data-aos-delay="200">
+          </div>
+        </div>
+      </div>
+    </section>
+  {% else %}
+    <section id="kits-home" class="relative" >
+      <div class="container-fluid maxwidth">
+        <div class="row flex align">
+          <div class="col-md-6 col-lg-5" >
+            <img src="{{ formation.image }}" data-aos="fade-right" data-aos-delay="200">
+          </div>
+          <div class="offset-md-0 col-md-6 offset-lg-2 col-lg-3 margin-top-60" data-aos="fade-left" data-aos-delay="">
+            <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{formation.title}}</h2>
+            <div class="margin-bottom-30">{{ formation.body|raw }}</div>
+            <span><a href="{{ formation.link }}" class="btn">En savoir plus</a></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+{% endfor %}
+
+<!-- / Financer -->
+
+<!-- Kits -->
+
+<!-- / Kits -->
+
+
+
+<!--  Actus -->
+<section class="actus-home padding-top-120 padding-bottom-120 bg-grey-clair">
+  <div class="container-fluid maxwidth" >
+    <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30 text-center">Nos dernières actus</h2>
+
+    <div class="show padding-top-80">
+      <div class="slide-actus">
+        {% for item in articles %}
+          <div class="hovereffect text-center">
+            <div>
+              <div class="overlay"></div>
+              <img class="block text-center margin-auto" src="{{item.image}}" >
+            </div>
+            <a href="{{item.link}}"><span class="size20 light-font uppercase text-center lineheight20 block margin-top-30 margin-bottom-20">{{ item.title }}</span></a>
+            <div class="size13 block text-center lineheight15 block">{{item.body|slice(0, 120)|raw}}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <span class="margin-top-120 block">
+		<a href="/actualites-conseils-beaute" class="btn margin-auto block">toutes les actualités et conseils</a>
+	</span>
+  </div>
+</section>
+<!--  / Actus -->
+
+
+<!-- formation -->
+<section id="formation-home" class="margin-top-120 margin-bottom-120">
+  <div class="container-fluid maxwidth">
+    <h2 class="lora size30 uppercase bold-font margin-bottom-100 block lineheight30 text-center">Ils ont été formés</h2>
+
+    <div class="row flex align">
+
+      {% for item in temoignes %}
+        <div class="offset-md-1 col-md-4  border-color-bottom">
+          <div class="row">
+            <div class="offset-md-0  col-md-6"><img  src="{{ item.image }}" data-aos="fade-right" data-aos-delay="200" class="margin-auto block"></div>
+            <div class="offset-md-0 col-md-6"  data-aos="fade-down" data-aos-delay="300">
+              <span class="size20 light-font uppercase lineheight20 block margin-top-100  margin-bottom-20">{{ item.nom }} {{ item.prenom }}</span>
+              <div class="margin-bottom-30">{{ item.body|raw }}</div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+
+    </div>
+    <span class="margin-top-120 block">
+        <a href="/temoignages" class="btn margin-auto block">Découvrir les témoignages</a>
+    </span>
+  </div>
+</section>
+<!-- / formation -->
+
+
+<!-- Apropos -->
+{#<section class="bg-interresse bg-black" style="background-image: url({{ file_url(node.field_nous_rejoindre_image.entity.uri.value) }})" data-aos="fade" data-aos-delay="">
+  <div class="container maxwidth ">
+    <div class="container-fluid maxwidth padding-top-120 padding-bottom-120">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 class="lora size30 uppercase white bold-font margin-bottom-30 block" data-aos="fade-down" data-aos-delay="200">{{node.field_nous_rejoindre_titre.value}}</h2>
+          <div class="white margin-bottom-30" data-aos="fade-down" data-aos-delay="250">{{ node.field_nous_rejoindre_description.value|raw }}</div>
+          <span data-aos="fade-down" data-aos-delay="300">
+            <a href="{{node.field_nous_rejoindre_lien_.0.url|render}}" class="btn white-btn">{{node.field_nous_rejoindre_lien_.0.title|render}}</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>#}
+{{ drupal_entity('block', 'rejoindrecolorvintage') }}
+<!-- / Apropos-->

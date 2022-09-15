@@ -1,0 +1,5 @@
+gz_pages.admin:
+  title: 'Pages'
+  route_name: gz_pages.form
+  base_route: gazoline_manager.form
+  weight: 10

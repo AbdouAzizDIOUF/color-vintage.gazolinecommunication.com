@@ -1,0 +1,73 @@
+<!-- HEADER -->
+<div class="container-fluid maxwidth flex align-items-start  space-between align bg-black mobile-center" data-aos="fade-down" data-aos-delay="0">
+  <a class="tel size14" href="tel:0033499647270">04 99 64 72 70</a>
+  <div class="logos flex column">
+    <!-- Logo -->
+    <a href="/" class="logo" data-aos="fade-up" data-aos-delay="400">
+      <img src="/themes/custom/color_vintage/img/svg/logo.svg" alt="Logo###">
+    </a>
+    <!-- / Logo -->
+    <!-- Logo -->
+    <a href="/" class="logo_small" data-aos="fade-up" data-aos-delay="400">
+        <img src="/themes/custom/color_vintage/img/svg/logo_small.svg" alt="Logo###" >
+    </a>
+    <!-- / Logo -->
+  </div>
+  <div class="flex">
+    {% if logged_in %}
+      <a href="/monespace" class="compte">Mon compte</a>
+      <a href="/panier" class="panier_header">Panier<span id="nbkitsPanier">{{ nbkitsPanier }}</span></a>
+      &nbsp;&nbsp;&nbsp;&nbsp;<a href="{{ path('user.logout', {'destination': path('<current>')}) }}" class="connexion" >Deconnexion</a>
+      <!-- Burger -->
+     
+    {% else %}
+    
+      <a href="{{ path('login.content', {'destination': path('<current>')}) }}" class="connexion" >Connexion</a>
+    {% endif %}
+     <div class="menu-btn menu-burger wrap-burger" id="burger-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      
+    <!-- / Burger -->
+            <!-- Overlay Menu -->
+        <div class="overlay-menu bg-black" >
+          <!-- Menu -->
+           <ul class="menu">
+          {% for link in menu  %}
+            <li><a href="{{link.url}}">{{ link.name|raw }}</a></li>
+          {% endfor %}
+           {% if logged_in %}
+      <li><a href="/monespace" style="-webkit-text-fill-color: #ca8723;">Mon compte</a></li>
+      <li><a href="{{ path('user.logout', {'destination': path('<current>')}) }}" style="-webkit-text-fill-color: #ca8723;" >Deconnexion</a></li>
+      <!-- Burger -->
+     
+    {% else %}
+    
+      <li><a href="{{ path('login.content', {'destination': path('<current>')}) }}" style="-webkit-text-fill-color: #ca8723;" >Connexion</a></li>
+    {% endif %}
+        </ul>
+
+          <!-- /Menu -->
+      </div>
+  </div>
+</div>
+<div class="top-header">
+  <div class="container-fluid maxwidth flex column space-between align" data-aos="fade-down" data-aos-delay="">
+
+    <div class="navbar">
+      <div class="navbarheader">
+        <!-- Menu -->
+        <ul class="menu">
+          {% for link in menu  %}
+            <li class="{% if link.url in url('<current>')['#markup'] %}active{% endif %}"><a href="{{link.url}}">{{ link.name|raw }}</a></li>
+          {% endfor %}
+        </ul>
+        <!-- /Menu -->
+    </div>
+  </div>
+</div>
+<!-- / HEADER -->
+</div>

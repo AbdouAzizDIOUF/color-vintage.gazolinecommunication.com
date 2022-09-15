@@ -1,0 +1,94 @@
+<!-- Apropos -->
+<section class="bg-apropos-2 bg-black"  data-aos="fade" data-aos-delay="">
+    <div class="container maxwidth ">
+        <div class="container-fluid maxwidth padding-top-60 padding-bottom-20">
+            <h1 class="lora size50 uppercase white bold-font margin-bottom-30 block text-center" data-aos="fade-down" data-aos-delay="200">Actualités & conseils beauté	</h1>
+        </div>
+    </div>
+</section>
+<!-- / Apropos-->
+
+
+<!-- presentation -->
+<section id="presentation" class="relative margin-top-120	">
+    <div class="container-fluid maxwidth">
+        <div class="row flex">
+            <div class="col-2 col-md-1 flex flex-column social">
+                <a target="_blank" href="https://twitter.com/intent/tweet?url=https://color-vintage.gazolinecommunication.com&text={{ node.body.value|raw }}"><img src="/themes/custom/color_vintage/img/svg/twitter.svg" data-aos="fade-left" data-aos-delay="200"></a>
+                <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url('<current>')}}"><img src="/themes/custom/color_vintage/img/svg/facebook.svg" data-aos="fade-left" data-aos-delay="200"></a>
+            </div>
+            <div class="col-10 col-md-11 relative">
+                <img src="{{ file_url(node.field_image.entity.uri.value)}}" data-aos="fade-left" data-aos-delay="200" class="objet-fit" style="max-height:620px;">
+            </div>
+        </div>
+    </div>
+    <div class="padding-bottom-30">
+        <div class="container-fluid maxwidthsmall">
+            <div class="row flex align">
+                <div class="col-md-12 margin-top-60" data-aos="fade-right" data-aos-delay="">
+                    <span class="size20 light-font">00.00.2021</span>
+                    <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{label}}</h2>
+                    <div class="margin-bottom-30">{{ node.body.value|raw }}</div>
+                    <h3 class="size20 uppercase bold-font margin-bottom-30 margin-top-80 block lineheight30">{{node.field_sous_titre_actualite.value}}</h3>
+                    <div class="margin-bottom-30">{{ node.field_description_sous_titre_act.value|raw }}</div>
+                </div>
+                {% set i=0 %}
+                {% for key, item in node.field_sous_titres  %}
+                    {% if i==0 %}
+                        <div class="col-md-6 col-lg-5 margin-top-120" >
+                            {% if item.entity.field_image is not empty %}
+                                <img src="{{ file_url(item.entity.field_image.entity.uri.value)}}" data-aos="fade-right" data-aos-delay="200" class="shadow-black">
+                            {% endif %}
+
+                        </div>
+                        <div class="offset-md-0 col-md-6 offset-lg-1 col-lg-6 margin-top-60" data-aos="fade-left" data-aos-delay="">
+                            <h3 class="size20 uppercase bold-font margin-bottom-30 margin-top-80 block lineheight30">{{item.entity.field_sous_titre.value}}</h3>
+                            <div class="margin-bottom-30"> {{item.entity.field_description.value|raw}}</div>
+                        </div>
+                    {% else %}
+                        <div class="col-md-12 margin-top-60 margin-bottom-30" data-aos="fade-left" data-aos-delay="">
+                            <h3 class="size20 uppercase bold-font margin-bottom-30  block lineheight30">{{item.entity.field_sous_titre.value}}</h3>
+                            <div class="margin-bottom-30"> {{item.entity.field_description.value|raw}}</div>
+                        </div>
+                        <div class="col-sm-12 margin-bottom-60  margin-top-60 relative">
+                            {% if item.entity.field_image is not empty %}
+                                <img src="{{ file_url(item.entity.field_image.entity.uri.value)}}" data-aos="fade-up" data-aos-delay="200" class="objet-fit" style="max-height:620px;">
+                            {% endif %}
+                        </div>
+                {% endif %}
+                    {% set i=i+1 %}
+                {% endfor %}
+
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / presentation-->
+
+
+<!-- Next / Prev-->
+<section id="nextprev" class="relative margin-top-30">
+    <div class="container-fluid maxwidthsmall">
+        <div class="row">
+            <div class="col-sm-6 col-lg-2">
+                {% if precedent is not null %}
+                    <a href="{{precedent.link}}" class="btn btn-prev" data-aos="fade-left" data-aos-delay="200">Article précédent</a>
+                    <img src="{{ precedent.image }}" data-aos="fade-up" data-aos-delay="200" class="objet-fit" >
+                    <h4 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30 border-color-bottom padding-bottom-20 margin-top-20" data-aos="fade-up" data-aos-delay="200">{{precedent.title}}</h4>
+                {% endif %}
+
+            </div>
+            <div class="col-sm-6 offset-lg-8 col-lg-2">
+                {% if suivant is not null %}
+                    <a href="{{suivant.link}}" class="btn btn-next" data-aos="fade-right" data-aos-delay="200">Article précédent</a>
+                    <img src="{{ suivant.image }}" data-aos="fade-up" data-aos-delay="200" class="objet-fit" >
+                    <h4 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30 border-color-bottom  padding-bottom-20 margin-top-20 " data-aos="fade-up" data-aos-delay="200">{{suivant.title}}</h4>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<!-- / Next / Prev-->

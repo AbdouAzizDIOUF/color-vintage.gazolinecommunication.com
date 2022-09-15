@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: { }
+id: menu-admin
+label: 'Menu admin Gazoline'
+description: 'Menu admin for customers.'
+locked: false

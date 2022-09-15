@@ -1,0 +1,8 @@
+name: Twig Extension
+type: module
+description: 'Gestion des fonctions Twig supplémentaires'
+package: Studio Gazoline
+
+core_version_requirement: ^8 || ^9
+version: 9.x-1.0
+project: 'gz_twig_extension'

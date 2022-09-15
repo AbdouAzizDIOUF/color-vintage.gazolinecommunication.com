@@ -1,0 +1,34 @@
+<?php
+
+function blocks_theme($existing, $type, $theme, $path) {
+
+  return [
+    'footerBlock' => [
+      'variables' => [
+        'infos' => NULL,
+        'menu' => NULL,
+        'submenu' => NULL,
+        'langue' => NULL
+      ],
+    ],
+
+    'menuBlock' => [
+      'variables' => [
+        'menu' => NULL,
+        'langue' => NULL,
+        'username' => NULL,
+        'nbkitsPanier' => NULL,
+      ],
+    ],
+    'kitsBlock' => [
+        'variables' => [
+            'kits' => NULL,
+            'categories' => NULL,
+        ],
+    ],
+    'calendar' => [
+        'variables' => [
+        ],
+    ],
+  ];
+}

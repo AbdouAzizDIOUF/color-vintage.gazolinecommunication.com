@@ -1,0 +1,23 @@
+<?php
+
+
+
+/**
+ * Implements hook_mail().
+ */
+function gz_ajax_mail($key, &$message, $params) {
+	 switch ($key) {
+		case 'send_alert_daily':
+			$message['subject'] = 'Votre formation est demain !';
+			$message['from'] = \Drupal::config('system.site')->get('mail');
+			$message['body'][] = $params['message'];
+			$message['headers'] = $params['headers'];
+			break;
+		case 'send_alert_hourly':
+			$message['subject'] = 'Votre formation est dans 1 heure !';
+			$message['from'] = \Drupal::config('system.site')->get('mail');
+			$message['body'][] = $params['message'];
+			$message['headers'] = $params['headers'];
+			break;
+ 	}
+}

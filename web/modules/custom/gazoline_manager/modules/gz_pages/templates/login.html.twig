@@ -1,0 +1,97 @@
+<style>
+	body{background-image:url(/sites/default/files/gaxieu-background.jpg); background-size:cover;}
+	.site-footer{display:none;}
+	#page, #main-wrapper {background: transparent;}
+	.acces-login{display:flex; align-items:center; justify-content: center; padding-top: 5%; }
+	.acces-login .modal{font-family: arial; }
+	.acces-login .modal .logo{width: 250px; position: relative; left: 50%; transform: translateX(-50%); margin-bottom: 20px;}
+	.acces-login .modal .login{background-color:#fff; border-radius:20px; padding: 40px; max-width: 410px;}
+	.acces-login .modal label{text-transform: uppercase; font-weight: 700; font-size: 14px;}
+	.acces-login .modal .form-text{width: 100%; padding: 11px;}
+	.acces-login .modal .description{font-style: italic;color: #aaa;}
+	.acces-login .modal .button{border: 0;background: #76b837;border-radius: 11px;width: 100%;padding: 11px;color: #fff;font-size: 17px; }
+	.acces-login .modal .forgot-password{text-align: right;font-size: 12px;color: #ae6868; cursor:pointer}
+	.acces-login .modal .forgot{display:none}
+	.acces-login .modal .forgot.active{display:block}
+	.acces-login .modal .forgot p{    font-style: italic;color: #aaa;font-size: 0.85em;}
+</style>
+
+
+
+
+<!--  Connexion -->
+<section id="login-form" class="padding-top-60 padding-bottom-120">
+	<div class="container-fluid maxwidthsmall" >
+		<div class="row">
+			<div class="col-md-6 border-right padding-right-80">
+				<span class="lora size30 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-20 text-left">Me connecter</span>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				{{ user_login_form }}
+				<p class="forgot-password">{{ 'Vous avez oublié votre mot de passe ?'|t }}</p>
+				<div class="forgot">
+					{{ forgot_password_form }}
+				</div>
+				{#<form>
+
+					<div class="form-group margin-top-60">
+						<input type="email" placeholder="Adresse mail" class="form-control" id="email">
+					</div>
+					<div class="form-group margin-top-20">
+						<input type="password" placeholder="Mot de passe" class="form-control" id="password">
+					</div>
+					<div class="form-group margin-top-20">
+						<button href="##" class="connexion">Me connecter</button>
+					</div>
+				</form>#}
+			</div>
+			<div class="col-md-6 padding-left-80">
+				<span class="lora size30 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-20 text-left">Créer mon compte</span>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+				{{ register_form }}
+
+			</div>
+		</div>
+	</div>
+</section>
+<!--  / Connexion -->
+<div class="acces-login">
+
+
+		
+		{#<img src="/sites/default/files/logo-gaxieu.png" alt="Logo" class="logo">
+		<!-- LOGIN -->
+		<div class="login">
+			{{ user_login_form }}
+			<p class="forgot-password">{{ 'Vous avez oublié votre mot de passe ?'|t }}</p>
+			<div class="forgot">
+				{{ forgot_password_form }}
+			</div>
+		</div>#}
+		<!-- / LOGIN -->
+
+	{#<dialog id="window3">
+		<button id="exit" class="close"></button>
+		<h2 style="text-align: center">Confirmation d'inscription !</h2>
+		<p style="text-align: center">CUn mail de validation vous a été envoyé à votre adresse mail
+			Merci de bien vouloir confirmer votre inscription.
+			Pensez à vérifier vos spams.</p><br><br>
+		<button id="exit3" class="exit2">Fermer</button>
+	</dialog>#}
+</div>
+
+<dialog id="window3">
+	{#<button id="exit" class="close"></button>#}
+	<h2 style="text-align: center">Confirmation d'inscription !</h2>
+	<p style="text-align: center">Un mail de validation vous a été envoyé à votre adresse mail
+		Merci de bien vouloir confirmer votre inscription.
+		Pensez à vérifier vos spams.</p><br><br>
+	<button id="exit3" class="fermer3">Fermer</button>
+</dialog>
+
+
+<script type="text/javascript">
+	document.querySelector('.forgot-password').onclick = function() {
+		document.querySelector('.forgot').classList.toggle('active');
+	}
+</script>

@@ -1,0 +1,5 @@
+gazoline_manager.form:
+  title: 'Studio Gazoline Manager'
+  description: 'Gérer le site.'
+  route_name: gazoline_manager.form
+  parent: 'system.admin_config_system'

@@ -1,0 +1,5 @@
+name: Kits
+description: Centralise les traittements specifiques aux kits
+type: module
+core_version_requirement: ^9
+package: Color Vintage

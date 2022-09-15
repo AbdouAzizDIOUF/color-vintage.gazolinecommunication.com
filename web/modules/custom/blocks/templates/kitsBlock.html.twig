@@ -1,0 +1,57 @@
+<section class="padding-top-60 padding-bottom-120">
+    <div class="container-fluid maxwidth" >
+        <div class="row">
+            <div class="col-md-3">
+                <span class="lora size20 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-20 text-left">Filtres</span>
+                {% for categorie in categories %}
+                    <div class="mb-2">
+                        <input type="checkbox" id="scales{{ categorie.id }}" name="scales" value="{{ categorie.id }}" onclick="searchKitsByCategories({{ categorie.id }})" />
+                        <label style="max-width: 100%" for="scales" class="uppercase light-font">{{ categorie.name }}</label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-9 row" id="kits">
+                {% for kit in kits %}
+                    <div class="col-md-4 hovereffect margin-bottom-60" data-aos="fade" data-aos-delay="300">
+                        <div>
+                            <img class="block text-center margin-auto border-color-bottom" src="{{ kit.image }}"  alt="{{ kit.title }}"/>
+                            {% set currentUrl = path('<current>')|replace({'/':''}) %}
+                            <input type="hidden" value="{{ currentUrl }}" id="currentURI">
+                            <div  class="flex img-hover">
+                                <a href="{{ kit.link }}" class="oeil"></a>
+                                {% if logged_in %}
+                                    <a style="cursor: pointer" onclick="addPanier({{ kit.id }})" class="panier show" id="show"></a>
+                                {% else %}
+                                    <a style="cursor: pointer" onclick="addPanierPopupInfo({{ kit.id }})" class="panier"  {#class="panier show" id="show">#}></a>{#/panier?add={{ kit.id }}#}
+                                {% endif %}
+                                 {#<span onclick="addPanier({{ kit.id }})" class="panier" style="cursor: pointer">Ajouter au Panier</span>#}
+                            </div>
+                        </div>
+                       
+                        <span class="lora size20 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-20 text-left">{{ kit.title }}</span>
+                        <p class=" block  lineheight15 block padding-bottom-30">{{ kit.body|slice(0, 150)|raw }} ...</p>
+                        <br>
+                        <span class="date size20 light-font">{{ kit.prix }} €</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<dialog id="window">
+ <button id="exit" class="close"></button>
+    <h2 style="text-align: center">Ajout au panier</h2>
+    <p style="text-align: center">Ce produit à été ajouté au panier</p><br><br>
+   <button id="exit2" class="fermer">Fermer</button>
+</dialog>
+
+
+<dialog id="window2">
+    <div class="modal-image">
+        <svg viewBox="0 0 32 32" style="fill:#48DB71"><path d="M1 14 L5 10 L13 18 L27 4 L31 8 L13 26 z"></path></svg>
+    </div>
+    <p style="text-align: center">Merci de vous authentifier pour pouvoir accéder à votre panier.</p><br><br>
+    <span style="text-align: center;" class="fermer2"><button id="exit2" style="background-color: black;color: white;border: 0;border-radius: 50px !important; margin: auto; padding: 5px;padding-left: 20px;padding-right: 20px;font-weight: 300;" class="exit2">Fermer</button>&nbsp;&nbsp;&nbsp;<a href="/user-login" id="addProduitPanierpopup" class="connexion2">Connexion</a></span>
+</dialog>

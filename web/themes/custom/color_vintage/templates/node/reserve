@@ -1,0 +1,42 @@
+{% for key, item in node.field_elements_kit %}
+    <div class="row flex align">
+        <div class="col-md-4 offset-md-1 relative order-2">
+            <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30 margin-top-30">{{item.entity.field_titre.value}}{{ item.entity.field_image['0']['#item'].entity.uri.value }}</h2>
+            <p class="margin-bottom-30 ">{{item.entity.field_description.value|raw}}</p>
+            <a href="##" class="btn margin-top-50">Commander le kit pro</a>
+        </div>
+        <div class="offset-md-1 col-md-5 relative order-1">
+            {% if item.entity.field_image is not empty %}
+                <img src="{{ file_url(item.entity.field_image['0']['#item'].entity.uri.value)}} "data-aos="fade-left" data-aos-delay="" class="objet-fit">
+            {% endif %}
+            {#<img src="/themes/custom/color_vintage/img/kit2.jpg" data-aos="fade-left" data-aos-delay="" class="objet-fit">#}
+        </div>
+    </div>
+{% endfor %}
+
+
+
+
+
+
+{% for key, formation in formations %}
+    <div class="collapse show padding-top-80" id="collapse{{ key }}" data-bs-parent="#accordion">
+        <div class="slide-accordion">
+            {% for item in formation %}
+                <div class="item-accordion col-md-4">
+                    <div class="card card-body card-shadow">
+                        <div class="hovereffect">
+                            <span class="date size20 light-font">00.00.00</span>
+                            <span class="lora size20 block uppercase bold-font text-center">technicien(ne) d'embellissement Du Regard - Master Class</span>
+                            <a href="##" class="btn btn-hover" style="margin: auto;">&nbsp;</a>
+                            <div class="overlay">
+                                <p class="size13">Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.</p>
+                                <a href="##" class="btn">&nbsp;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}

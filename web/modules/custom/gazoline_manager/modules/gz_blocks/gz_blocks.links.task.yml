@@ -1,0 +1,5 @@
+gz_blocks.admin:
+  title: 'Blocs'
+  route_name: gz_blocks.form
+  base_route: gazoline_manager.form
+  weight: 50

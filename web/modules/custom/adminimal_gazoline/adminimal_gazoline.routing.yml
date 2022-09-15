@@ -1,0 +1,7 @@
+adminimal_gazoline.form:
+  path: '/admin/config/system/adminimal-gazoline'
+  defaults:
+    _form: 'Drupal\adminimal_gazoline\Form\AdminimalGazolineForm'
+    _title: 'Configuration'
+  requirements:
+    _permission: 'gazoline adminimal'

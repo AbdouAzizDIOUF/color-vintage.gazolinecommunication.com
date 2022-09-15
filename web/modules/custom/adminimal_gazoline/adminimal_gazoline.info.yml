@@ -1,0 +1,12 @@
+name: Adminimal Gazoline
+type: module
+description: 'Customize Adminimal theme.'
+package: Studio Gazoline
+dependencies:
+  - adminimal_admin_toolbar
+  - fontawesome
+
+core_version_requirement: ^8 || ^9
+version: 9.x-1.0
+project: 'adminimal_gazoline'
+configure: adminimal_gazoline.form

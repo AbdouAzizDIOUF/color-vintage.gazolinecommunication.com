@@ -1,0 +1,8 @@
+name: AJAX
+type: module
+description: 'Gestion des requêtes AJAX'
+package: Studio Gazoline
+
+version: '8.x-2.0'
+core_version_requirement: ^8 || ^9
+project: 'gz_ajax'

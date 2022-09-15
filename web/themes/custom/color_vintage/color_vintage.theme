@@ -1,0 +1,192 @@
+<?php
+
+use Drupal\block\Entity\Block;
+use Drupal\node\Entity\Node;
+use Drupal\file\Entity\File;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\UserInterface;
+
+
+
+function color_vintage_preprocess_block(&$variables){
+    $block = \Drupal\block\Entity\Block::load('rejoindrecolorvintage');
+    $uuid = $block->getPluginId();
+    $uuid = substr_replace($uuid, '', 0, 14);
+  // dump($block);
+    $block_content = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', $uuid);
+    // dump($block_content);
+    //dump(\Drupal::request()->getRequestUri());
+    //dump($block_content->get('field_lien')->uri);
+    if ($block_content) {
+        $block_nous_rejoindre = [
+            'title' => $block_content->field_titre->value,
+            'description' => $block_content->body->value,
+            'link' => [
+                'uri' => '/candidature-spontannee',
+                'title' => $block_content->get('field_lien')->title
+            ],
+        ];
+    }
+
+
+    $block2 = \Drupal\block\Entity\Block::load('noskitsprofessionnels');
+    $uuid2 = $block->getPluginId();
+    $uuid2 = substr_replace($uuid2, '', 0, 14);
+    // dump($block);
+    $block_content2 = \Drupal::service('entity.repository')->loadEntityByUuid('block_content', $uuid2);
+    // dump($block_content);
+
+    if ($block_content2) {
+        $block_kits_prof = [
+            'title' => $block_content2->field_titre->value,
+            'description' => $block_content2->body->value,
+            'link' => [
+                'uri' => '/nos-kits-professionnels',
+                'title' => $block_content2->get('field_lien')->title
+            ],
+        ];
+    }
+
+
+    $variables['nous_rejoindre'] = $block_nous_rejoindre;
+    $variables['nos_kits_prof'] = $block_kits_prof;
+}
+
+function color_vintage_preprocess_node(&$variables) {
+    $node = $variables['elements']['#node'];
+    $bundle = $node->bundle();
+
+
+    if ($bundle === 'espace' || $bundle === 'panier') {
+        if (!\Drupal::currentUser()->isAuthenticated()) {
+            $redirect = new RedirectResponse('/user-login?destination='.$bundle);
+            return  $redirect->send();
+        }
+    }
+
+    if (isset($variables['node']) && $variables['node']->getType() === "nos_kits"){
+        $categorie = $variables['node']->field_categorie->target_id;
+        //dump($variables['node']->field_tags->getValue()); //getFormationsByTags
+        $formations = \Drupal::service('formations_module.service')->getFormationsByTags($variables['node']->field_tags->getValue());
+        $variables['formations'] = $formations;
+        $variables['kitsArray'] = \Drupal::service('kits_module.service')->getKitsByCatégorie($categorie);
+    }
+
+    if (isset($variables['node']) && $variables['node']->getType() === "homepage"){
+        $variables['categories'] = $categories = \Drupal::service('formations_module.service')->getCategoriesFormations();
+        $variables['formations'] = $formations = \Drupal::service('formations_module.service')->getProchaineFormationsHomePage();
+        $variables['formationsHP'] = $formationsHqP = \Drupal::service('formations_module.service')->getFormationsHomePage();
+        $variables['articles'] = \Drupal::service('articles_module.service')->getArticles();
+
+        $variables['temoignes'] = \Drupal::service('kits_module.service')->getOnTemoigne();
+    }
+
+    if (isset($variables['node']) && $variables['node']->getType() === "nos_formations"){
+
+        $variables['categories'] = $categories = \Drupal::service('formations_module.service')->getCategoriesFormations();
+        $variables['formations'] = $formations = \Drupal::service('formations_module.service')->getFormations(1);
+        //dump($formations); die;
+    }
+
+    if (isset($variables['node']) && $variables['node']->getType() === "formations"){
+       // dump($variables['node']->field_participants_formation->getValue());
+        /*$paragraph = Paragraph::create(['type' => 'participants']);
+        $paragraph->set('field_participant	', 120);
+        $paragraph->isNew();
+        $paragraph->save();
+
+        $current[] = array(
+            'target_id' => $paragraph->id(),
+            'target_revision_id' => $paragraph->getRevisionId(),
+        );
+
+        die;*/
+        $tags=$variables['node']->field_tags->getValue();
+        $programs = $variables['node']->field_formations_complementaire->getValue();
+        $variables['articles'] = \Drupal::service('formations_module.service')->getArticlesByTags($tags);
+        $variables['programmes'] = \Drupal::service('formations_module.service')->getFormationsProgrammes($programs);
+        //dump($variables['node']);
+    }
+
+    if (isset($variables['node']) && $variables['node']->getType() === "actualite_conseils_beaute"){
+        $variables['articles'] = $articles = \Drupal::service('articles_module.service')->getArticles();
+    }
+
+
+    if (isset($variables['node']) && $variables['node']->getType() === "actualite_conseils_beaute"){
+        $variables['articles'] = $articles = \Drupal::service('articles_module.service')->getArticles();
+    }
+
+    if (isset($variables['node']) && $variables['node']->getType() === "temoignages"){
+        $variables['temoignages'] = $temoignages = \Drupal::service('kits_module.service')->getTemoignages();
+    }
+
+    if (isset($variables['node']) && $variables['node']->getType() === "nous_rejoindre"){
+        $variables['offres'] = $offres = \Drupal::service('offres_module.service')->getOffres();
+        $variables['temoignes'] = \Drupal::service('kits_module.service')->getOnTemoigne();
+    }
+
+    if (isset($variables['node']) && ($variables['node']->getType() === "offre" || $variables['node']->getType() === "fiche")){
+        $variables['temoignes'] = \Drupal::service('kits_module.service')->getOnTemoigne();
+        $variables['articles'] = \Drupal::service('articles_module.service')->getArticles();
+    }
+
+    if (isset($variables['node']) && $variables['node']->getType() === "pourquoi_nos_formations"){
+       $variables['fiches'] = \Drupal::service('kits_module.service')->getFiches();
+    }
+
+    if (isset($variables['node']) && $variables['node']->getType() === "commande"){
+       //$variables['commande'] = $commande = Drupal::service('payment_module.service')->getArticlesCommande(252);
+       //dump($variables['node']);
+    }
+
+
+
+    if (isset($variables['node']) && $variables['node']->getType() === "article"){
+        $currentArticleID = $variables['node']->id();
+        $articles = \Drupal::entityTypeManager()->getStorage('node')->loadByProperties(['type' => 'article']);
+        $articlesTab = [];
+        $count = 0;
+        $suivant = null;
+        $precedent = null;
+        $length = count($articles);
+        $positionCurrentArticle = 0;
+
+        $i=0;
+        foreach ($articles as $key => $value){
+            if ($key==$currentArticleID){
+                $positionCurrentArticle = $i;
+            }
+            $path = File::load($value->get('field_image')->target_id)->getFileUri();
+            $url = str_replace('public://', '/sites/default/files/', $path);
+            $articlesTab[] = [
+                'id' => $value->nid->value,
+                'title' => $value->title->value,
+                "image" => $url,
+                'link'=>$link = Url::fromRoute('entity.node.canonical', ['node' => $key], ['absolute' => TRUE])
+            ];
+
+            $i=$i+1;
+        }
+
+        if ($positionCurrentArticle>=1 && $positionCurrentArticle < $length-1){
+            $suivant = $articlesTab[$positionCurrentArticle+1];
+            $precedent = $articlesTab[$positionCurrentArticle-1];
+        }else if ( ($positionCurrentArticle == 0) && $length>1 ){
+            $precedent = null;
+            $suivant = $articlesTab[$positionCurrentArticle+1];
+        }else if ($positionCurrentArticle == $length-1  && $length>1){
+            $suivant = null;
+            $precedent = $articlesTab[$positionCurrentArticle-1];
+        }
+
+
+        $variables['suivant'] = $suivant;
+        $variables['precedent'] = $precedent;
+
+    }
+
+}

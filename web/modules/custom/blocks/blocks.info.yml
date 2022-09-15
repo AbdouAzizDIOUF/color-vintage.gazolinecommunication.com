@@ -1,0 +1,10 @@
+name: Blocks custom - Studio Gazoline
+type: module
+description: 'Block custom'
+package: Studio Gazoline
+core_version_requirement: ^8 || ^9
+version: 9.x-1.0
+dependencies:
+  - node
+  - block
+

@@ -1,0 +1,118 @@
+<br>
+<br>
+<br>
+<!-- Footer -->
+<div class="container-fluid maxwidth">
+	<div class="row">
+		<div class="col-md-12 text-center margin-auto">
+			<!-- Logo -->
+			<object type="image/svg+xml" data="sample.svg">
+				<img src="/themes/custom/color_vintage/img/svg/logo.svg" alt="Logo###" width="220px">
+			</object>
+			<span class="white margin-top-10 slogan">CENTRE DE FORMATION ESTHÉTIQUE & COIFFURE</span>
+			<!-- / Logo -->
+		</div>
+		<div class="row margin-top-100  margin-bottom-40">
+			<div class="col-md-3">
+				<!-- Menu footer-->
+				<ul class="menu-footer">
+					<li><a class="tel size14" href="tel:0033499647270">04 99 64 72 70</a></li>
+					<li><a class="map" href="##">165, rue Roland Garros<br>34130 Mauguio</a></li>
+				</ul>
+				<!-- /Menu -->
+			</div>
+
+			<div class="col-md-3">
+				<ul class="menu-footer">
+				{% for key, item in menu %}
+					{{ item.name }}
+					{% if key<4 %}
+						<li><a href="{{item.url}}">{{item.title}}</a></li>
+					{% endif %}
+				{% endfor %}
+				</ul>
+			</div>
+
+			<div class="col-md-3">
+				<ul class="menu-footer">
+					{% for key, item in menu %}
+						{% if key>=4 and key<8%}
+							<li><a href="{{item.url}}">{{item.title}}</a></li>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="col-md-3">
+				<ul class="menu-footer">
+					{% for key, item in menu %}
+						{% if key>=8 and key<=12%}
+							<li><a href="{{item.url}}">{{item.title}}</a></li>
+							{#<li><a href="##">Pourquoi choisir nos formations</a></li>
+						<li><a href="##">Agenda des formations</a></li>
+						<li><a href="##">S’inscrire à une formation</a></li>#}
+						{% endif %}
+					{% endfor %}
+				</ul>
+				<ul class="social">
+					{% for key,social in infos.socials if social %}
+						<li><a href="{{ social }}" target="_blank"><i class="fa fa-{{ key }}"></i></a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			{#<div class="col-md-3">
+				<!-- Menu footer-->
+				<ul class="menu-footer">
+					<li><a href="##">à propos de color vintage</a></li>
+					<li><a href="##">Pourquoi choisir nos formations</a></li>
+					<li><a href="##">Agenda des formations</a></li>
+					<li><a href="##">S’inscrire à une formation</a></li>
+
+				</ul>
+				<!-- /Menu -->
+			</div>
+			<div class="col-md-3">
+				<!-- Menu footer-->
+				<ul class="menu-footer">
+					<li><a href="##">Financer votre formation</a></li>
+					<li><a href="##">Nos kits professionnels</a></li>
+					<li><a href="##">Les témoignages</a></li>
+					<li><a href="##">Nos actualités et conseils beauté</a></li>
+				</ul>
+				<!-- /Menu -->
+			</div>
+			<div class="col-md-3">
+				<!-- Menu footer-->
+				<ul class="menu-footer">
+					<li><a href="##">Rejoindre color vintage</a></li>
+					<li><a href="##">Nous contacter</a></li>
+					<li><a href="##">FAQ</a></li>
+				</ul>
+				<!-- /Menu -->
+			</div>#}
+
+
+		</div>
+	</div>
+</div>
+<div class="copyright-container bg-black-grey margin-top-60 padding-bottom-10">
+	<div class="container-fluid maxwidth">
+		<div class="row">
+			<div class="col-md-6">
+				<div class="txt-left">
+					<ul class="flex copyright-footer">
+						{% for item in submenu  %}
+							<li><a href="#{{item.url}}" class="obflink">{{item.title}}</a></li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="an_copyright txt-center relative">
+					<a href="/">© {{ 'now' | date('Y') }} - colorvintageformation.fr - </a><a href="https://www.studiogazoline.com" target="_blank" alt="Studio Gazoline Montpellier">Design par Agence de communication Montpellier <img src="/themes/custom/color_vintage/img/svg/studiogazoline.svg" class="img-gaz"/></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- / Footer -->
+

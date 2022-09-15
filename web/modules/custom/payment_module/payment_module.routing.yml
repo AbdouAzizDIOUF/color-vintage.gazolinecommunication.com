@@ -1,0 +1,24 @@
+payment_module.payment:
+  path: '/payment'
+  defaults:
+    _controller: '\Drupal\payment_module\Controller\PaymentController::paymentPaypal'
+    _title: 'PayPal - The safer, easier way to pay online!'
+  requirements:
+    _permission: 'access content'
+
+payment_module.monespace:
+  path: '/monespace'
+  defaults:
+    _controller: '\Drupal\payment_module\Controller\PaymentController::monespace'
+    _title: 'Welcom to MonEspace'
+  requirements:
+    _permission: 'access content'
+
+
+payment_module.generateFacture:
+  path: '/facture/{id}'
+  defaults:
+    _controller: '\Drupal\payment_module\Controller\PaymentController::generateFacture'
+    _title: 'generate Facture'
+  requirements:
+    _permission: 'access content'

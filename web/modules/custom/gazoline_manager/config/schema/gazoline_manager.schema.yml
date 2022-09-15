@@ -1,0 +1,12 @@
+gazoline_manager.settings:
+  type: config_object
+  label: 'Configurer le site'
+  mapping:
+    gazoline_manager:
+      type: mapping
+      mapping:
+block.settings.gazoline_manager_block:
+  type: block_settings
+  label: 'Studio Gazoline block'
+  mapping:
+    gazoline_manager_block_settings:

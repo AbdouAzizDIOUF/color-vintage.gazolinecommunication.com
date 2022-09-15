@@ -1,0 +1,102 @@
+<!-- Apropos -->
+<section class="bg-apropos-2 bg-black"  data-aos="fade" data-aos-delay="">
+	<div class="container maxwidth ">
+		<div class="container-fluid maxwidth padding-top-60 padding-bottom-20">
+			<span class="size20 light-font uppercase lineheight20 block margin-bottom-20 text-center" data-aos="fade-down" data-aos-delay="200">A Propos</span>
+			<h1 class="lora size50 uppercase white bold-font margin-bottom-30 block text-center" data-aos="fade-down" data-aos-delay="200">{{ label }}</h1>
+			<ul class="list-formation flex justify-center align" id="apropos">
+				<li class="uppercase {% if "/a-propos" in url('<current>')['#markup'] %}active{% endif %}"><a href="/a-propos">Présentation</a></li>
+				<li class="uppercase {% if "/a-propos-equipe" in url('<current>')['#markup'] %}active{% endif %}"><a href="/a-propos-equipe">Équipe</a></li>
+				<li class="uppercase {% if "/a-propos-cadre-de-formation" in url('<current>')['#markup'] %}active{% endif %}"><a href="/a-propos-cadre-formation">Cadre de formation</a></li>
+			</ul>
+		</div>
+	</div>
+</section>
+<!-- / Apropos-->
+
+<div class="menu-right">
+	<a href="/nous-contacter"><img src="/themes/custom/color_vintage/img/svg/formateur.svg" alt="###" style="max-width: 50px;margin-right: 40px;left: 7px;position: relative;">Devenir Formateur</a>
+	{#<a href="##"><img src="/themes/custom/color_vintage/img/svg/maquille.svg" alt="###" style="max-width:50px ;margin-right: 20px;">Lorem ipsum color</a>
+	<a href="##"><img src="/themes/custom/color_vintage/img/svg/question.svg" alt="###" style="max-width: 50px;left: 2px;
+position: relative;">Lorem ipsum color</a>#}
+</div>
+
+
+
+<!-- equipe -->
+<section id="equipe" class="margin-top-120 margin-bottom-120">
+    <div class="container-fluid maxwidth">
+		<div class="row flex align">
+			<div class="col-md-12 margin-bottom-60" data-aos="fade-down" data-aos-delay="">
+					<h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30 text-center">{{node.field_cadre_titre.value}}</h2>
+					<div class="margin-bottom-30 text-center">{{node.body.value|raw}}</div>
+			</div>
+			{% for key, item in node.field_cadres if key is not null %}
+				<div class="offset-md-1 col-md-4">
+					<div class="row">
+						<div class="col-md-12"><img  src="{{ file_url(item.entity.field_image.entity.uri.value)}}" data-aos="fade-right" data-aos-delay="200" class="margin-auto block shadow-black-bottom" ></div>
+						<div class=" col-md-12"  data-aos="fade-down" data-aos-delay="300">
+							<span class="lora size30 uppercase bold-font margin-bottom-10 margin-top-30 block lineheight30 ">{{ item.entity.field_nom.value }} {{ item.entity.field_prenom.value }}</span>
+							<p class="margin-bottom-30">{{ item.entity.field_metier.value }}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+    </div>
+</section>
+<!-- / equipe -->
+
+
+
+<!-- formateurs -->
+<section id="formateurs" class="bg-grey-clair padding-top-120 padding-bottom-120">
+    <div class="container-fluid maxwidth">
+		<div class="margin-bottom-100" data-aos="fade-down" data-aos-delay="">
+			<h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30 text-center">{{node.field_formateur_titre.value|raw}}</h2>
+			<div class="margin-bottom-30 text-center">{{node.field_formateur_description.value|raw}}</div>
+		</div>
+		<div class="row flex align">
+		{% for key, item in node.field_formateurs if key is not null %}
+			<div class=" col-md-4 margin-bottom-60">
+				<div data-aos="fade-down" class="" data-aos-delay="300">
+					<img  src="{{ file_url(item.entity.field_image.entity.uri.value)}}" data-aos="fade-right" data-aos-delay="200" class=" block margin-auto shadow-black">
+					<span class="lora size30 uppercase bold-font margin-bottom-10 margin-top-30 block lineheight30 margin-left-50">{{ item.entity.field_nom.value }} {{ item.entity.field_prenom.value }}</span>
+					<div class="margin-bottom-30 margin-left-50">{{ item.entity.field_metier.value }}</div>
+				</div>
+			</div>
+		{% endfor %}
+		</div>
+    </div>
+</section>
+<!-- / formateurs -->
+
+
+<!-- modeles -->
+<section id="modeles" class="padding-top-120 padding-bottom-120">
+    <div class="container-fluid maxwidthsmall">
+		<div class="margin-bottom-100" data-aos="fade-down" data-aos-delay="">
+				<h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30 text-center">{{node.field_modele_titre.value|raw}}</h2>
+				<div class="margin-bottom-30 text-center">{{node.field_modele_description.value|raw}}</div>
+		</div>
+		<div class="row flex align">
+			{% for key, item in node.field_modeles if key is not null %}
+				<div class=" col-md-4 margin-bottom-60">
+					<div data-aos="fade-down" class="border-color-bottom" data-aos-delay="300">
+						<img  src="{{ file_url(item.entity.field_image.entity.uri.value)}}" data-aos="fade-right" data-aos-delay="200" class=" block   margin-auto">
+						<span class="lora size30 uppercase bold-font margin-bottom-10 margin-top-30 block lineheight30">{{ item.entity.field_nom.value }} {{ item.entity.field_prenom.value }}</span>
+						<div class="margin-bottom-30">{{ item.entity.field_metier.value }}</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+    </div>
+</section>
+<!-- / modeles -->
+
+
+
+<!-- Apropos -->
+{{ drupal_entity('block', 'rejoindrecolorvintage') }}
+
+<!-- / Apropos-->

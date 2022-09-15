@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Theme override to display all the fields in a row.
+ *
+ * Available variables:
+ * - view: The view in use.
+ * - fields: A list of fields, each one contains:
+ *   - content: The output of the field.
+ *   - raw: The raw data for the field, if it exists. This is NOT output safe.
+ *   - class: The safe class ID to use.
+ *   - handler: The Views field handler controlling this field.
+ *   - inline: Whether or not the field should be inline.
+ *   - wrapper_element: An HTML element for a wrapper.
+ *   - wrapper_attributes: List of attributes for wrapper element.
+ *   - separator: An optional separator that may appear before a field.
+ *   - label: The field's label text.
+ *   - label_element: An HTML element for a label wrapper.
+ *   - label_attributes: List of attributes for label wrapper.
+ *   - label_suffix: Colon after the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ *   - has_label_colon: A boolean indicating whether to display a colon after
+ *     the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ * - row: The raw result from the query, with all data it fetched.
+ *
+ * @see template_preprocess_views_view_fields()
+ */
+#}
+
+{% if fields.counter.content|render|striptags|trim % 2 == 0 %}
+    <div class="row col-md-12 hovereffect hovereffect-tem  margin-bottom-100">
+        <div class="col-md-7">
+            <div class="overlay tem"></div>
+            <img class="block text-center margin-auto" src="{{ fields.field_image_header.content|striptags|trim|render }}"  alt="">
+        </div>
+        <div class="offset-md-1 col-md-4 border-color-bottom">
+            <a href="{{ fields.view_node.content|striptags|trim|render }}"><span class="lora size30 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-20 text-left">{{ fields.title.content|striptags|trim|render }}</span></a>
+            <p class=" block  lineheight15 block padding-bottom-30">{{ fields.body.content|striptags|trim|render }}</p>
+            <a href="{{ fields.view_node.content|striptags|trim|render }}" class="btn">Voir l’offre</a>
+        </div>
+    </div>
+{% else %}
+    <div class="row col-md-12 hovereffect hovereffect-tem margin-bottom-100">
+        <div class="col-md-4 border-color-bottom order-2">
+            <span class="lora size30 bold-font uppercase lineheight30 block margin-top-30 margin-bottom-20 text-left">{{ fields.title.content|striptags|trim|render }}</span>
+            <div class=" block  lineheight15 block padding-bottom-30">{{ fields.body.content|striptags|trim|render }}</div>
+            <a href="{{ fields.view_node.content|striptags|trim|render }}" class="btn ">Voir l’offre</a>
+        </div>
+        <div class="offset-md-1 col-md-7 order-1">
+            <div class="overlay tem"></div>
+            <img class="block text-center margin-auto" src="{{ fields.field_image_header.content|striptags|trim|render }}" >
+        </div>
+    </div>
+{% endif %}

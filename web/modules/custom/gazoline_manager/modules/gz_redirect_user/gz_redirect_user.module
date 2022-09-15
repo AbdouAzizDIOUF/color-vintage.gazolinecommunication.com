@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * Implements hook_user_login().
+ */
+function gz_redirect_user_user_login($account)
+{
+  // if (in_array('administrateur', $account->getRoles())) {
+  //   $response = new \Symfony\Component\HttpFoundation\RedirectResponse('/admin/users_contacts');
+  //   $response->send();
+  //   return;
+  // }
+}
+
+// use Drupal\Core\Form\FormStateInterface;
+
+// /**
+//  * Implements hook_form_FORM_ID_alter().
+//  */
+// function gz_redirect_user_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+//     // Alter login form and add own custom submit handler.
+//     $form['#submit'][] = '_gz_redirect_user_user_login_form_submit';
+// }
+
+// /**
+//  * Custom submit handler for login form.
+//  */
+// function _gz_redirect_user_user_login_form_submit($form, FormStateInterface $form_state) {
+//     $form_state->setRedirect('<front>');
+// }

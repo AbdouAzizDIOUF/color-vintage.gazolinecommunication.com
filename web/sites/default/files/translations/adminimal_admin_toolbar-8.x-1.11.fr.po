@@ -1,0 +1,26 @@
+# French translation of Adminimal Admin Toolbar (8.x-1.11)
+# Copyright (c) 2020 by the French translation team
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Adminimal Admin Toolbar (8.x-1.11)\n"
+"POT-Creation-Date: 2020-04-28 23:06+0000\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Language-Team: French\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n>1);\n"
+
+msgid "Administration"
+msgstr "Administration"
+msgid "Adminimal Admin Toolbar"
+msgstr "Adminimal Admin Toolbar"
+msgid "Configure Adminimal Admin Toolbar."
+msgstr "Configurer Adminimal Admin Toolbar."
+msgid "Adminimal Admin Toolbar Settings"
+msgstr "Paramètres d'Adminimal Admin Toolbar"
+msgid "Adminimal Admin Toolbar settings"
+msgstr "Paramètres d'Adminimal Admin Toolbar"
+msgid "Avoid loading \"Open Sans\" font"
+msgstr "Ne pas charger la police de caractères \"Open Sans\""

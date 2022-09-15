@@ -1,0 +1,18 @@
+gazoline_manager.form:
+  path: '/admin/config/system/gazoline-manager/informations'
+  defaults:
+    _form: 'Drupal\gazoline_manager\Form\GazolineManagerForm'
+    _title: 'Informations'
+  requirements:
+    _permission: 'gazoline'
+
+gazoline_manager.remaining_day_tranche:
+  path: '/cron/remaining_day_tranche'
+  defaults:
+    _controller: '\Drupal\gazoline_manager\Controller\GazolineManagerController::remaining_day_tranche'
+    _title: 'remaining_day_tranche'
+  requirements:
+    _permission: 'access content'
+
+
+

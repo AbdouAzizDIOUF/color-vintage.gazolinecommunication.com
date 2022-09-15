@@ -1,0 +1,10 @@
+<!-- formulaire  -->
+<section id="formulaire" class="relative padding-top-100 padding-bottom-100 bg-grey-clair">
+    <div class="container-fluid maxwidth">
+        <div class="col-md-12 margin-bottom-60">
+            <h1 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">Déposer ma candidature</h1>
+            {{ node.body.value|raw }}
+        </div>
+        {{ drupal_entity('webform', 'candidature_spontanne') }}
+    </div>
+</section>

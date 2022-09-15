@@ -1,0 +1,11 @@
+name: Pages
+type: module
+description: 'Gestion des pages'
+package: Studio Gazoline
+configure: gz_pages.form
+dependencies:
+ - gazoline_manager
+
+core_version_requirement: ^8 || ^9
+version: 9.x-1.0
+project: 'gz_pages'

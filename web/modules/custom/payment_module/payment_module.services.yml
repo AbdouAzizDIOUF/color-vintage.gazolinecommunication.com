@@ -1,0 +1,3 @@
+services:
+  payment_module.service:
+    class:  Drupal\payment_module\Service\PaymentService

@@ -1,0 +1,140 @@
+<dialog id="window3">
+  {#<button id="exit" class="close"></button>#}
+  <h2 style="text-align: center">Confirmation d'inscription !</h2>
+  <p style="text-align: center">Un mail de validation vous a été envoyé à votre adresse mail
+    <br>Merci de bien vouloir confirmer votre inscription.
+    <br>Pensez à vérifier vos spams.</p><br><br>
+  <button id="exit3" class="fermer3">Fermer</button>
+</dialog>
+
+<!-- Apropos -->
+<section class="bg-apropos-2 bg-black"  data-aos="fade" data-aos-delay="">
+  <div class="container maxwidth ">
+    <div class="container-fluid maxwidth padding-top-60 padding-bottom-20">
+      <h1 class="lora size50 uppercase white bold-font margin-bottom-30 block text-center" data-aos="fade-down" data-aos-delay="200">
+        {{ label }}</h1>
+    </div>
+  </div>
+</section>
+<!-- / Apropos-->
+
+
+{% for key, item in fiches %}
+
+  {% if key is divisible by (2) %}
+    <section id="pourquoi1" class="relative" >
+      <div class="container-fluid maxwidth  margin-top-100">
+        <div class="row flex align">
+          <div class="offset-md-1 col-md-5 col-lg-5" >
+            <img src="{{ item.image }}" data-aos="fade-right" data-aos-delay="200">
+          </div>
+          <div class="offset-md-0 col-md-6 offset-lg-1 col-lg-3 margin-top-60" data-aos="fade-left" data-aos-delay="">
+            <div class="flex flex-start margin-left-100-neg">
+              <img src="{{ item.icone }}" alt="###" data-aos="fade-right" data-aos-delay="200" height="80" class="margin-right-30">
+              <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{item.title}}</h2>
+            </div>
+            <div class="margin-bottom-30">{{ item.body|raw }}</div>
+            <a href="{{item.link}}" class="btn">Découvrir la fiche profil</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% else %}
+<!-- pourquoi1 -->
+
+<!-- / pourquoi1 -->
+
+<!-- pourquoi2 -->
+    {% if key !=3 %}
+      <section id="pourquoi2" class="relative bg-grey-clair" >
+        <div class="container-fluid maxwidth  margin-top-100">
+          <div class="row flex align">
+
+            <div class="offset-md-0 col-md-6 offset-lg-1 col-lg-3 margin-top-60" data-aos="fade-left" data-aos-delay="">
+              <div class="flex flex-start margin-left-100-neg">
+                <img src="{{ item.icone }}" alt="###" data-aos="fade-right" data-aos-delay="200" height="80" class="margin-right-30">
+                <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{item.title}}</h2>
+              </div>
+              <div class="margin-bottom-30">{{ item.body|raw }}</div>
+              <a href="{{item.link}}" class="btn">Découvrir la fiche profil</a>
+            </div>
+            <div class="offset-md-1 col-md-5 col-lg-5" >
+              <img src="{{ item.image }}" data-aos="fade-right" data-aos-delay="200">
+            </div>
+          </div>
+        </div>
+      </section>
+    {% else %}
+
+      <section id="pourquoi4" class="relative" >
+        <div class="container-fluid maxwidth  margin-top-100">
+          <div class="row flex align">
+
+            <div class="offset-md-0 col-md-6 offset-lg-1 col-lg-3 margin-top-60" data-aos="fade-left" data-aos-delay="">
+              <div class="flex flex-start margin-left-100-neg">
+                <img src="{{ item.icone }}" alt="###" data-aos="fade-right" data-aos-delay="200" height="80" class="margin-right-30">
+                <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{item.title}}</h2>
+              </div>
+              <div class="margin-bottom-30">{{ item.body|raw }} </div>
+              <a href="{{item.link}}" class="btn">Découvrir la fiche profil</a>
+            </div>
+            <div class="offset-md-1 col-md-5 col-lg-5" >
+              <img src="{{ item.image }}" data-aos="fade-right" data-aos-delay="200">
+              <img src="/themes/custom/color_vintage/img/trace-pourquoi.jpg" data-aos="slide-down" data-aos-delay="400" class="forme-back-3">
+            </div>
+          </div>
+        </div>
+      </section>
+
+    {% endif %}
+<!-- / pourquoi2 -->
+  {#{% elseif key==2 %}#}
+<!-- pourquoi3 -->
+{#<section id="pourquoi3" class="relative" >
+  <div class="container-fluid maxwidth  margin-top-100">
+    <div class="row flex align">
+      <div class="offset-md-1 col-md-5 col-lg-5" >
+        <img src="/themes/custom/color_vintage/img/pourquoi3.jpg" data-aos="fade-right" data-aos-delay="200" class="shadow-black">
+      </div>
+      <div class="offset-md-0 col-md-6 offset-lg-1 col-lg-3 margin-top-60" data-aos="fade-left" data-aos-delay="">
+        <div class="flex flex-start margin-left-100-neg">
+          <img src="{{ item.icone }}" alt="###" data-aos="fade-right" data-aos-delay="200" height="80" class="margin-right-30">
+          <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">{{item.title}}</h2>
+        </div>
+        <div class="margin-bottom-30">{{ item.body|raw }}</div>
+        <a href="{{item.link}}" class="btn">Découvrir la fiche profil</a>
+      </div>
+    </div>
+  </div>
+</section>#}
+<!-- / pourquoi3 -->
+
+<!-- pourquoi4 -->
+{#<section id="pourquoi4" class="relative" >
+  <div class="container-fluid maxwidth  margin-top-100">
+    <div class="row flex align">
+
+      <div class="offset-md-0 col-md-6 offset-lg-1 col-lg-3 margin-top-60" data-aos="fade-left" data-aos-delay="">
+        <div class="flex flex-start margin-left-100-neg">
+          <img src="/themes/custom/color_vintage/img/svg/picto4.svg" alt="###" data-aos="fade-right" data-aos-delay="200" height="80" class="margin-right-30">
+          <h2 class="lora size30 uppercase bold-font margin-bottom-30 block lineheight30">DIVERSIFIER SES COMPÉTENCES ET COMPLÉTER SON MÉTIER</h2>
+        </div>
+        <p class="margin-bottom-30">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br><br>
+          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.  </p>
+        <a href="##" class="btn">Découvrir la fiche profil</a>
+      </div>
+      <div class="offset-md-1 col-md-5 col-lg-5" >
+        <img src="/themes/custom/color_vintage/img/pourquoi4.jpg" data-aos="fade-right" data-aos-delay="200">
+        <img src="/themes/custom/color_vintage/img/trace-pourquoi.jpg" data-aos="slide-down" data-aos-delay="400" class="forme-back-3">
+      </div>
+    </div>
+  </div>
+</section>#}
+
+ {% endif %}
+{% endfor %}
+<!-- / pourquoi4 -->
+
+<!-- Apropos -->
+{{ drupal_entity('block', 'rejoindrecolorvintage') }}
+<!-- / Apropos-->

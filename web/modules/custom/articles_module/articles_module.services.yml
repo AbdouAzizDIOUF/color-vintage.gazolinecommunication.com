@@ -1,0 +1,3 @@
+services:
+  articles_module.service:
+    class:  Drupal\articles_module\Service\ArticlesService

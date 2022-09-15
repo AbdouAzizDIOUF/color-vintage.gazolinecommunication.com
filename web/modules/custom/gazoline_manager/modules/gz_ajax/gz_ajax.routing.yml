@@ -1,0 +1,47 @@
+# gz_ajax.newsletter:
+#   path: '/ajax/newsletter'
+#   defaults:
+#     _controller: 'Drupal\gz_ajax\Controller\GzAjaxController::newsletter'
+#     _title: 'Newsletter'
+#   requirements:
+#     _permission: 'access content'
+
+# gz_ajax.search:
+#   path: '/ajax/support/search'
+#   defaults:
+#     _controller: 'Drupal\gz_ajax\Controller\supportSearchController::content'
+#     _title: 'Calendar'
+#   requirements:
+#     _role: 'authenticated'
+
+# gz_ajax.uploadUser:
+#   path: '/admin/upload/user'
+#   defaults:
+#     _controller: 'Drupal\gz_ajax\Controller\GzAjaxController::uploadUser'
+#     _title: 'Upload user'
+#   requirements:
+#     _role: 'authenticated'
+
+gz_ajax.calendar:
+  path: '/ajax/calendar'
+  defaults:
+    _controller: 'Drupal\gz_ajax\Controller\CalendarController::getActivites'
+    _title: 'Calendar'
+  requirements:
+    _permission: 'access content'
+
+gz_ajax.cronDaily:
+  path: '/cron/alertdaily'
+  defaults:
+    _controller: 'Drupal\gz_ajax\Controller\CronController::alertDaily'
+    _title: 'alert Daily'
+  requirements:
+    _permission: 'access content'
+
+gz_ajax.cronHourly:
+  path: '/cron/alerthourly'
+  defaults:
+    _controller: 'Drupal\gz_ajax\Controller\CronController::alertHourly'
+    _title: 'alert hourly'
+  requirements:
+    _permission: 'access content'

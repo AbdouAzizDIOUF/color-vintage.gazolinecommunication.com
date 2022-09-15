@@ -1,0 +1,12 @@
+<!-- Apropos -->
+<section class="bg-apropos-2 bg-black" style="background-image: url({{ file_url(node.field_image_header.entity.uri.value) }})"  data-aos="fade" data-aos-delay="">
+    <div class="container maxwidth ">
+        <div class="container-fluid maxwidth padding-top-60 padding-bottom-20">
+            <span class="size20 light-font uppercase lineheight20 block margin-bottom-20 text-center">Calendrier</span>
+            <h1 class="lora size50 uppercase white bold-font margin-bottom-30 block text-center" data-aos="fade-down" data-aos-delay="200">{{ label }}</h1>
+        </div>
+    </div>
+</section>
+<!-- / Apropos-->
+
+{{ drupal_entity('block', 'calendarblock') }}
