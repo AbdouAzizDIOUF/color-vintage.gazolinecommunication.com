@@ -803,7 +803,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 if (file_exists(__DIR__. '/settings.local.php')) {
     include __DIR__. '/settings.local.php';
 }
-/*$databases['default']['default'] = array (
+$databases['default']['default'] = array (
   'database' => 'colorvintage',
   'username' => 'root',
   'password' => 'root',
@@ -812,10 +812,10 @@ if (file_exists(__DIR__. '/settings.local.php')) {
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
-);*/
+);
 
 
-$databases['default']['default'] = array (
+/*$databases['default']['default'] = array (
   'database' => 'colorvintage',
   'username' => 'colorvintage',
   'password' => 'FdK1cnsvt64_Uwka',
@@ -824,5 +824,5 @@ $databases['default']['default'] = array (
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
-);
+);*/
 $settings['config_sync_directory'] = 'sites/default/files/config_oG-716Qylefcp_EEiLJAVb4867p4AT-5zJL80-07DpPQ2AS7i0CdglGXJ-z_9Pauz-pqOHmr-Q/sync';
